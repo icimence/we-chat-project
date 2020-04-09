@@ -1,0 +1,4 @@
+<view class = "container">
+  <image class = "about-banner" src = "/images/first-page.jpg"></image>
+  <navigator style = 'font-weight: bold; font-size: 60rpx'>经典恋爱番</navigator>
+</view>

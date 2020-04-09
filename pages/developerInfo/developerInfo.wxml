@@ -1,0 +1,5 @@
+<view class = "container">
+  <image class = "about-banner" src = "/images/timg (4).jpg"></image>
+  <text style = 'font-weight: bold; font-size: 60rpx'>NandoDu</text>
+  <text>qq: 1209912903</text>
+</view>

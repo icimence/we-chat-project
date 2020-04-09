@@ -1,14 +1,20 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/logs/logs"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+  "pages": ["pages/developerInfo/developerInfo", "pages/first-page/first-page", "pages/dragonAndTiger/dragonAndTiger"],
+  "tabBar": {
+    "list": [
+      {
+        "text": "补番推荐",
+        "pagePath": "pages/first-page/first-page",
+        "iconPath": "icons/recommand.png",
+        "selectedIconPath": "icons/recommand1.png" 
+      },
+      {
+        "text": "开发者",
+        "pagePath": "pages/developerInfo/developerInfo",
+        "iconPath": "icons/developer.png",
+        "selectedIconPath": "icons/developer1.png"
+      }
+    ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
