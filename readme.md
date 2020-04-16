@@ -1,4 +1,4 @@
-# **iDo 微信小程序介绍文档 v1.1**
+# **iDo 微信小程序介绍文档**
 
 ## 项目背景
 
@@ -18,16 +18,19 @@
 
 ## 程序界面
 
-<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/login.png" height=400px title="初始登录授权界面" style="display:inline">
+<figure class="half">
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/login.png" height=400px title="初始登录授权界面" >
 
-<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/mine.png" height=400px title="“我的”界面设计" style="display:inline">
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/mine.png" height=400px title="“我的”界面设计" >
+</figure>
 
 <br />
 
-<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/running.png" height=400px title="“进行中”界面设计" style="display:inline">
+<figure class="half">
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/running.png" height=400px title="“进行中”界面设计">
 
-<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/home.png" height=400px title="“推荐”界面设计" style="display:inline">
-
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/home.png" height=400px title="“推荐”界面设计">
+</figure>
 
 > p1: 初始登录授权界面；p2: “我的”界面设计；p3: “进行中”界面设计；p4: “推荐”界面设计
 
@@ -81,4 +84,4 @@
 
 ## 更新记录
 
-* 2020/04/16 20：00  **V1.2** 小程序改版，增加更新记录，提供版本号记录。
+* 2020/04/16 20：00  **V1.2** 小程序改版，增加更新记录，提供版本号记录。更新用户界面图片加载
