@@ -18,13 +18,16 @@
 
 ## 程序界面
 
-![初始登录授权界面](\小程序UI设计草稿\初始登录授权页面.png)
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/login.png" height=400px title="初始登录授权界面" style="display:inline">
 
-![“我的”界面设计](\小程序UI设计草稿\“我的”界面设计.png)
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/mine.png" height=400px title="“我的”界面设计" style="display:inline">
 
-![“进行中”界面设计](\小程序UI设计草稿\“进行中”界面设计.png)
+<br />
 
-![“推荐”界面设计](\小程序UI设计草稿\“推荐”界面设计.png)
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/running.png" height=400px title="“进行中”界面设计" style="display:inline">
+
+<img src="https://cdn.jsdelivr.net/gh/icimence/CDN/wechat/home.png" height=400px title="“推荐”界面设计" style="display:inline">
+
 
 > p1: 初始登录授权界面；p2: “我的”界面设计；p3: “进行中”界面设计；p4: “推荐”界面设计
 
