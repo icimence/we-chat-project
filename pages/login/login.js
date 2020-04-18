@@ -50,7 +50,7 @@ Page({
     //用户按了允许授权按钮
     var that = this;
     wx.switchTab({
-      url: '/pages/first-page/first-page',
+      url: '/pages/my/my',
     })
     // 获取到用户的信息了，打印到控制台上看下
     console.log("用户的信息如下：");

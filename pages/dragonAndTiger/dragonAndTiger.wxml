@@ -1,7 +1,0 @@
-<view class = "container">
-  <image class = "about-banner" src = "/images/20160329011822_jMuTW.thumb.700_0.jpeg"></image>
-  <text>龙与虎</text>
-  <view class = "text-para">
-    <text>简介：光靠眼睛就能让人胆寒，其实只是个普通高中生的高须竜儿，在新学期第一天就被体型娇小、个性凶狠的「掌中老虎」逢坂大河狠狠蹂躏，可是也结下两人的不解之缘……</text>
-  </view>
-</view>
