@@ -15,8 +15,8 @@
       {
         "text": "进行",
         "pagePath": "pages/ing/ing",
-        "iconPath": "icons/developer.png",
-        "selectedIconPath": "icons/developer1.png"
+        "iconPath": "icons/ing.png",
+        "selectedIconPath": "icons/ing1.png"
       },
       {
         "text": "我的",
