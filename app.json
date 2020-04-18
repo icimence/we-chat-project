@@ -3,7 +3,7 @@
   "tabBar": {
     "list": [
       {
-        "text": "补番推荐",
+        "text": "关于",
         "pagePath": "pages/first-page/first-page",
         "iconPath": "icons/recommand.png",
         "selectedIconPath": "icons/recommand1.png" 
