@@ -1,0 +1,10 @@
+<view wx:if="canIUse" class="center">
+  <view>
+    <image src="/images/first-page.jpg" class="logo"></image>
+  </view>
+  <text class="words">从这里开始</text>
+  <text>获得你的公开信息（昵称，头像等）</text>
+  <button class="button" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+</view>
+
+<view wx:else>请升级微信版本</view>

@@ -1,12 +1,12 @@
 {
-  "pages": ["pages/developerInfo/developerInfo", "pages/first-page/first-page", "pages/dragonAndTiger/dragonAndTiger"],
-  "tabBar": {
-    "list": [
+  "pages": ["pages/login/login","pages/developerInfo/developerInfo","pages/first-page/first-page"],
+  "tabBar":{
+    "list":[
       {
-        "text": "关于",
+        "text": "推荐",
         "pagePath": "pages/first-page/first-page",
         "iconPath": "icons/recommand.png",
-        "selectedIconPath": "icons/recommand1.png" 
+        "selectedIconPath": "icons/recommand1.png"
       },
       {
         "text": "开发者",
