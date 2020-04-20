@@ -44,15 +44,6 @@ Page({
     }
    });
   },
-
-  onPullDownRefresh:function (){
-    wx.showNavigationBarLoading()
-    setTimeout(function () {
-      // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-      }, 1500);
-  },
   
   bindGetUserInfo: function(e) {
    if (e.detail.userInfo) {
@@ -71,10 +62,10 @@ Page({
    } else {
     //用户按了拒绝按钮
     wx.showModal({
-     title: '警告',
-     content: '您点击了拒绝授权，小程序需要量身定制您，拒绝授权将导致无法进入。',
+     title: "警告",
+     content: "小程序需要量身定制，请授权登录",
      showCancel: false,
-     confirmText: '返回授权页面',
+     confirmText: "返回授权",
      success: function(res) {
       // 用户没有授权成功，不需要改变 isHide 的值
       if (res.confirm) {
@@ -83,5 +74,14 @@ Page({
      }
     });
    }
+  },
+
+  onPullDownRefresh:function (){
+    wx.showNavigationBarLoading()
+    setTimeout(function () {
+      // complete
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+      }, 1500);
   }
  })
