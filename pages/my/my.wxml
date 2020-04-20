@@ -1,0 +1,35 @@
+<view class = 'mypage'>  
+  <view class = 'topinfo'>
+    <view class = 'logo'>
+      <open-data type="userAvatarUrl" mode = 'cover' ></open-data>
+    </view>
+    <view class = 'username'>
+      <text>Hi, </text>
+      <open-data type="userNickName" lang="zh_CN" ></open-data>
+    </view>
+  </view>
+  <view class = 'goal'>
+    <view class = 'title'>
+      <image src = '/icons/line.png' class = 'titleline'></image>
+      <text class = 'titletext'>目标专业</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>修改</navigator>
+    </view>
+    <view class = 'line'></view>
+  </view>
+  <view class = 'urgency'>
+    <view class = 'title'>
+      <image src = '/icons/line.png' class = 'titleline'></image>
+      <text class = 'titletext'>紧急任务</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>修改</navigator>
+    </view>
+    <view class = 'line'></view>
+  </view>
+  <view class = 'collection'>
+    <view class = 'title'>
+      <image src = '/icons/line.png' class = 'titleline'></image>
+      <text class = 'titletext'>我的收藏</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>修改</navigator>
+    </view>
+    <view class = 'line'></view>
+  </view>
+  <view class = 'feedback'>
+    <text>如果您遇到问题，可以</text><navigator style = 'display: inline;' url = '/pages/feedback/feedback' hover-class = 'nav-hover' class = 'nav-default'>立即反馈</navigator>
+  </view>
+</view>

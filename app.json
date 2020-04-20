@@ -1,16 +1,18 @@
 {
-  "pages": ["pages/login/login",
-            "pages/recommend/recommend", 
-            "pages/ing/ing", 
-            "pages/my/my"
-           ],
+  "pages": [
+    "pages/my/my",
+    "pages/login/login",
+    "pages/recommend/recommend",
+    "pages/ing/ing",
+    "pages/feedback/feedback"
+  ],
   "tabBar": {
     "list": [
       {
         "text": "推荐",
         "pagePath": "pages/recommend/recommend",
         "iconPath": "icons/recommend.png",
-        "selectedIconPath": "icons/recommend1.png" 
+        "selectedIconPath": "icons/recommend1.png"
       },
       {
         "text": "进行",
@@ -26,5 +28,10 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "window": {
+    "navigationBarBackgroundColor": "#1aad19",
+    "navigationBarTextStyle": "black",
+    "navigationBarText": "blank"
+  }
 }
