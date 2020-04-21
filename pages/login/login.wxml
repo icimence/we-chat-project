@@ -1,9 +1,12 @@
-<view wx:if="canIUse" class="center">
+<view wx:if="canIUse">
+  <image src="/images/Rumkale.jpg" class="fullScreen"></image>
+  <view class="center">
   <view>
     <image src="/images/first-page.jpg" class="logo"></image>
   </view>
   <text class="words">记录奋斗的足迹</text>
   <button class="button" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  </view>
 </view>
 
 <view wx:else>请升级微信版本</view>

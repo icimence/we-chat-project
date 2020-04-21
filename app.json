@@ -1,10 +1,9 @@
 {
   "pages": [
-    "pages/my/my",
     "pages/login/login",
+    "pages/my/my",
     "pages/recommend/recommend",
-    "pages/ing/ing",
-    "pages/feedback/feedback"
+    "pages/ing/ing"
   ],
   "tabBar": {
     "list": [
@@ -17,8 +16,8 @@
       {
         "text": "进行",
         "pagePath": "pages/ing/ing",
-        "iconPath": "icons/ing1.png",
-        "selectedIconPath": "icons/ing.png"
+        "iconPath": "icons/ing.png",
+        "selectedIconPath": "icons/ing1.png"
       },
       {
         "text": "我的",

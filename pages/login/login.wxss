@@ -15,4 +15,12 @@
 }
 
 text{display: block;
-align-items: center;}
+align-items: center;
+}
+
+.fullScreen{
+  width: 100%;
+  background-size: auto;
+  position: fixed;
+  z-index: -1;
+}

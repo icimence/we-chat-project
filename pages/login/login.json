@@ -1,10 +1,6 @@
 {
   "navigationBarTitleText":"授权登录",
-<<<<<<< HEAD
-  "navigationBarTextStyle":"black"
-=======
   "navigationBarBackgroundColor":"#fff",
   "navigationBarTextStyle":"black",
   "enablePullDownRefresh":true
->>>>>>> 62bc26013aee4c8992c108f3df0dee637ecd5eb3
 }

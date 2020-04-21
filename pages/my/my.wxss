@@ -55,7 +55,8 @@
 .modifytext {
   color: blue;
   margin-top: 6rpx;
-  margin-left: 350rpx;
+  margin-left: 340rpx;
+  margin-right: 10rpx;
 }
 
 .nav-default {
@@ -102,3 +103,24 @@
   height: 100vh;
   align-items: center;
 }
+
+.button {
+  display: inline;
+  background: white;
+  border: none;
+  text-align: left;
+  padding: 7px 10px;
+  margin: 0px;
+  line-height: 1.6;
+  border-radius: 0;
+ }
+ 
+ .button::after {
+  border: none;
+  border-radius: 0;
+ }
+ 
+ .button_title {
+  font-size: 1rem;
+  color: darkblue;
+ }

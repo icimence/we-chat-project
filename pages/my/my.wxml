@@ -30,6 +30,9 @@
     <view class = 'line'></view>
   </view>
   <view class = 'feedback'>
-    <text>如果您遇到问题，可以</text><navigator style = 'display: inline;' url = '/pages/feedback/feedback' hover-class = 'nav-hover' class = 'nav-default'>立即反馈</navigator>
+    <text>如果有任何问题，欢迎</text>
+    <button class='button' open-type="feedback">
+      <text class='button_title'>提出建议</text>
+    </button>
   </view>
 </view>
