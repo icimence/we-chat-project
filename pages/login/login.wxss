@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: #fad73f;
 }
 
 text{display: block;
@@ -22,5 +23,9 @@ align-items: center;
   width: 100%;
   background-size: auto;
   position: fixed;
+  z-index: -1;
+}
+
+.floatlogo{
   z-index: -1;
 }
