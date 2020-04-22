@@ -1,4 +1,4 @@
-.logo{
+.logo {
   border-bottom: 1px solid #ccc;
   text-align: center;
   width: 375rpx;
@@ -6,7 +6,7 @@
   border-radius: 50%;
 }
 
-.center{
+.center {
   align-items: center;
   height: 100vh;
   display: flex;
@@ -15,17 +15,18 @@
   background-color: #fad73f;
 }
 
-text{display: block;
-align-items: center;
+text {
+  display: block;
+  align-items: center;
 }
 
-.fullScreen{
+.fullScreen {
   width: 100%;
   background-size: auto;
   position: fixed;
   z-index: -1;
 }
 
-.floatlogo{
+.floatlogo {
   z-index: -1;
 }

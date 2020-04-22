@@ -57,7 +57,7 @@
           <image src = '/icons/emptyicon.png' class = 'empty'></image>
         </view>
         <view>
-          <text class = 'titletext'>当前收藏夹为空，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>点击浏览推荐内容</navigator>
+          <text class = 'titletext'>当前收藏夹为空，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover' open-type="switchTab" url="/pages/recommend/recommend">点击浏览推荐内容</navigator>
         </view>
       </view>
     </view>
