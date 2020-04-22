@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/my/my",
+    "pages/login/login",
     "pages/recommend/recommend",
     "pages/ing/ing"
   ],
   "tabBar": {
+    "selectedColor": "#fad73f",
     "list": [
       {
         "text": "推荐",

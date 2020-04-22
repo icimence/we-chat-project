@@ -1,38 +1,68 @@
-<view class = 'mypage'>  
-  <view class = 'topinfo'>
-    <view class = 'logo'>
-      <open-data type="userAvatarUrl" mode = 'cover' ></open-data>
-    </view>
-    <view class = 'username'>
-      <text>Hi, </text>
-      <open-data type="userNickName" lang="zh_CN" ></open-data>
-    </view>
+<view class = 'mypage'>
+  <view>
+    <image src='/images/mypage_background.png' class = 'topImage'></image>
   </view>
-  <view class = 'goal'>
-    <view class = 'title'>
-      <image src = '/icons/line.png' class = 'titleline'></image>
-      <text class = 'titletext'>目标专业</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>修改</navigator>
+  <view class = 'content'> 
+    <view class = 'topinfo'>
+      <view class = 'logo'>
+        <open-data type="userAvatarUrl" mode = 'cover' ></open-data>
+      </view>
+      <view class = 'username'>
+        <open-data type="userNickName" lang="zh_CN" ></open-data>
+      </view>
     </view>
-    <view class = 'line'></view>
-  </view>
-  <view class = 'urgency'>
-    <view class = 'title'>
-      <image src = '/icons/line.png' class = 'titleline'></image>
-      <text class = 'titletext'>紧急任务</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>修改</navigator>
+    <view class="switch-type">
+      <view class = 'firstbtn'>
+        <view class="btn {{currentSelectTripType == 'mubiao' ? 'active' : ''}}" bindtap='selectedMubiao' data-id='mubiao'>
+          <image src='/images/mubiaozhuanye.png' class = 'btnsize' hidden='{{hiddenGoal}}'></image>
+          <image src='/images/mubiaozhuanye1.png' class = 'btnsize' hidden='{{!hiddenGoal}}'></image>
+        </view>
+      </view>
+      <view class = 'secondbtn'>
+        <view class="btn {{currentSelectTripType == 'jinji' ? 'active' : ''}}" bindtap='selectedJinji' data-id='jinji'>
+          <image src='/images/jinjirenwu.png' class = 'btnsize' hidden='{{hiddenUrgency}}'></image>
+          <image src='/images/jinjirenwu1.png' class = 'btnsize' hidden='{{!hiddenUrgency}}'></image>
+        </view>
+      </view>
+      <view class = 'thirdbtn'>
+        <view class="btn {{currentSelectTripType == 'shoucang' ? 'active' : ''}}" bindtap='selectedShoucang' data-id='shoucang'>
+          <image src='/images/wodeshoucang.png' class = 'btnsize' hidden='{{hiddenCollection}}'></image>
+          <image src='/images/wodeshoucang1.png' class = 'btnsize' hidden='{{!hiddenCollection}}'></image>
+        </view>
+      </view>
     </view>
-    <view class = 'line'></view>
-  </view>
-  <view class = 'collection'>
-    <view class = 'title'>
-      <image src = '/icons/line.png' class = 'titleline'></image>
-      <text class = 'titletext'>我的收藏</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>修改</navigator>
+    <view class = 'goal' hidden='{{hiddenGoal}}'>
+      <view class = 'title'>
+        <view>
+          <image src = '/icons/emptyicon.png' class = 'empty'></image>
+        </view>
+        <view>
+          <text class = 'titletext'>你还没有选择过任何专业，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>点击选择</navigator>
+        </view>
+      </view>
     </view>
-    <view class = 'line'></view>
-  </view>
-  <view class = 'feedback'>
-    <text>如果有任何问题，欢迎</text>
-    <button class='button' open-type="feedback">
-      <text class='button_title'>提出建议</text>
-    </button>
+    <view class = 'urgency' hidden='{{hiddenUrgency}}'>
+      <view class = 'title'>
+        <view>
+          <image src = '/icons/emptyicon.png' class = 'empty'></image>
+        </view>
+        <view>
+          <text class = 'titletext'>当前暂无紧急任务，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>点击创建新的任务</navigator>
+        </view>
+      </view>
+    </view>
+    <view class = 'collection' hidden='{{hiddenCollection}}'>
+      <view class = 'title'>
+        <view>
+          <image src = '/icons/emptyicon.png' class = 'empty'></image>
+        </view>
+        <view>
+          <text class = 'titletext'>当前收藏夹为空，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>点击浏览推荐内容</navigator>
+        </view>
+      </view>
+    </view>
+    <view class = 'feedbackview'>
+      <button class='feedback' open-type="feedback" style="background-image:url('https://nandodu-blog.oss-cn-shanghai.aliyuncs.com/feedback.png'); background-size: 100% 100%; plain='true'; background-color: white;"></button>
+    </view>
   </view>
 </view>
