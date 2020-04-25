@@ -1,0 +1,42 @@
+<!-- 标签页 -->
+<view class="swiper-tab">  
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">未支付</view>  
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已支付</view>  
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">已取消</view>  
+    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>  
+    <view class="swiper-tab-list {{currentTab==4 ? 'on' : ''}}" data-current="4" bindtap="swichNav">待评价</view>  
+    <view class="swiper-tab-list {{currentTab==5 ? 'on' : ''}}" data-current="5" bindtap="swichNav">已评价</view>  
+  </view>
+ 
+<view  class="tab-content">
+    <!-- 收入 -->
+    <scroll-view scroll-y="true" bindscrolltolower="loadIncome" class="tab-list-content {{currentTab==0?'active':''}}">
+        <view class="tab-list-item" wx:for="{{inList}}">
+            <view class="tab-list-item-detail">
+                <text>{{item.style}}</text>
+                <text class="tab-list-item-after">{{item.coin}}</text>
+            </view>
+            <view class="tab-list-item-time">{{item.time}}</view>
+        </view>
+        <view hidden="{{isHidenLoadMore}}">
+            <loading type="circle">加载中</loading>
+        </view>
+    </scroll-view>
+    <!-- 支出 -->
+    <scroll-view scroll-y="true" bindscrolltolower="loadOutlay" class="tab-list-content {{currentTab==1?'active':''}}">
+        <view class="tab-list-item" wx:for="{{outList}}">
+            <view class="tab-list-item-detail">
+                <text>{{item.style}}</text>
+                <text class="tab-list-item-after">{{item.coin}}</text>
+            </view>
+            <view class="tab-list-item-time">{{item.time}}</view>
+        </view>
+        <view hidden="{{isHidenLoadMore}}">
+            <loading type="circle">加载中</loading>
+        </view>
+    </scroll-view>
+    <!-- 已取消 -->
+    <view class="tab-list-content {{currentTab==2?'active':''}}">
+        <text>111</text>
+    </view>
+</view>

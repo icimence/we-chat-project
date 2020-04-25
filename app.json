@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/recommend/recommend",
     "pages/my/my",
     "pages/login/login",
-    "pages/recommend/recommend",
     "pages/ing/ing"
   ],
   "tabBar": {
