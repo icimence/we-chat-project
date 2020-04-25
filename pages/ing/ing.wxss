@@ -1,0 +1,91 @@
+.topInfo {
+  margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.topImage1 {
+  height: 30rpx;
+  width: 30rpx;
+  margin-left: 20rpx;
+}
+
+.topImage2 {
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 630rpx;
+}
+
+.bar {
+  width: 100vh;
+  height: 100rpx;
+}
+
+.barimage {
+  height:100rpx;
+  width: 750rpx;
+}
+
+.barname {
+  display: block;
+  margin-left: 70rpx;
+  margin-top: -78rpx;
+}
+
+.barinfo {
+  display:flex;
+  flex-direction: row;
+}
+
+.barnum {
+  margin-top: -78rpx;
+  position: fixed;
+  right: 40rpx;
+}
+
+.mission {
+  background: whitesmoke;
+  height: 150rpx;
+  width: 750rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.missionnameview {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 230rpx;
+}
+
+.timeimageview {
+  position: fixed;
+  left: 10rpx;
+}
+
+.timeimage {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.timetextview {
+  position: fixed;
+  left: 100rpx;
+}
+
+.stateview {
+  position: fixed;
+  right: 50rpx;
+}
+
+.stateimage {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.hidden {
+  display: none;
+}

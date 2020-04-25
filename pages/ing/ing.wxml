@@ -1,0 +1,46 @@
+<view class = 'ingpage'>
+  <view class = 'topInfo'>
+    <image src='/icons/add.png' class = 'topImage1'></image>
+    <image src='/icons/ask.png' class = 'topImage2'></image>
+  </view>
+  <block wx:for-items = "{{missionInfoData}}">
+    <view class = "bar" bindtap = 'toggleBtn' id="{{item.id}}">
+      <view>
+        <image class = 'barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
+        <image class = 'barimage {{item.id > 0?"hidden":""}}' src='{{item.imgurl1}}'></image>
+      </view>
+      <view class = 'barinfo'>
+        <view class = 'barname'>
+          <text>{{item.barname}}</text>
+        </view>
+        <view class = 'barnum'>
+          <text>{{item.barnum}}</text>
+          <text>/</text>
+          <text>{{item.barNum}}</text>
+        </view>
+      </view>
+    </view>
+    <block wx:for-items = "{{item.content}}" wx:for-item = "content">
+      <view class = "mission {{item.id > 0?'hidden':''}}">
+        <view class = 'timeimageview'>
+          <image class = 'timeimage' src='/icons/resttime.png'></image>
+        </view>
+        <view class = 'timetextview'>
+          <text class = 'timetextnum'>{{content.day}}</text>
+          <text>天</text>
+        </view>
+        <view class = 'missionnameview'>
+          <view>
+            <text>{{content.name}}</text>
+          </view>
+          <view>
+            <text>{{content.type}}</text>
+          </view>
+        </view>
+        <view class = 'stateview'>
+          <image class = 'stateimage' src='{{content.statecolor}}'></image>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
