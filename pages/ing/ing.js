@@ -29,6 +29,36 @@ Page({
               statecolor: "/icons/lamp.png"
             },
             {
+              day: 10,
+              name: "小程序实战",
+              type: "计算机",
+              statecolor: "/icons/lamp.png"
+            },
+            {
+              day: 10,
+              name: "小程序实战",
+              type: "计算机",
+              statecolor: "/icons/lamp.png"
+            },
+            {
+              day: 10,
+              name: "小程序实战",
+              type: "计算机",
+              statecolor: "/icons/lamp.png"
+            },
+            {
+              day: 10,
+              name: "小程序实战",
+              type: "计算机",
+              statecolor: "/icons/lamp.png"
+            },
+            {
+              day: 10,
+              name: "小程序实战",
+              type: "计算机",
+              statecolor: "/icons/lamp.png"
+            },
+            {
               day: 30,
               name: "资本论",
               type: "经济学",
