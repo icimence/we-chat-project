@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  width: 100vw;
+  height: 60rpx;
 }
 
 .topImage1 {
@@ -18,67 +20,82 @@
 }
 
 .bar {
-  width: 100vh;
+  width: 100vw;
   height: 100rpx;
 }
 
 .barimage {
   height:100rpx;
-  width: 750rpx;
+  width: 100vw;
 }
 
 .barname {
   display: block;
   margin-left: 70rpx;
   margin-top: -78rpx;
+  height: 50rpx;
+  width: 200rpx;
 }
 
 .barinfo {
-  display:flex;
-  flex-direction: row;
+  width: 100vw;
+  height:100rpx;
 }
 
 .barnum {
-  margin-top: -78rpx;
-  position: fixed;
-  right: 40rpx;
+  margin-top: -50rpx;
+  margin-left:675rpx;
 }
 
 .mission {
   background: whitesmoke;
   height: 150rpx;
-  width: 750rpx;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  width: 100vw;
 }
 
 .missionnameview {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  left: 230rpx;
+  margin-left: 230rpx;
+  margin-top: -120rpx;
+  height: 50rpx;
+  width: 300rpx;
+}
+
+.missionnameview1 {
+  height: 50rpx;
+  width: 300rpx;
+}
+
+.missionnameview2 {
+  height: 50rpx;
+  width: 300rpx;
 }
 
 .timeimageview {
-  position: fixed;
-  left: 10rpx;
+  height: 100rpx;
+  width: 100rpx;
 }
 
 .timeimage {
   width: 80rpx;
   height: 80rpx;
+  margin-left: 10rpx;
+  margin-top: 30rpx;
 }
 
 .timetextview {
-  position: fixed;
-  left: 100rpx;
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 100rpx;
+  margin-top: -50rpx;
 }
 
 .stateview {
-  position: fixed;
-  right: 50rpx;
+  margin-left: 683rpx;
+  margin-top: -30rpx;
+  height: 50rpx;
+  width: 50rpx;
 }
 
 .stateimage {

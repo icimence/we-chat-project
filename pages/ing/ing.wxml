@@ -5,10 +5,8 @@
   </view>
   <block wx:for-items = "{{missionInfoData}}">
     <view class = "bar" bindtap = 'toggleBtn' id="{{item.id}}">
-      <view>
-        <image class = 'barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
-        <image class = 'barimage {{item.id > 0?"hidden":""}}' src='{{item.imgurl1}}'></image>
-      </view>
+      <image class = 'barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
+      <image class = 'barimage {{item.id > 0?"hidden":""}}' src='{{item.imgurl1}}'></image>
       <view class = 'barinfo'>
         <view class = 'barname'>
           <text>{{item.barname}}</text>
@@ -30,10 +28,10 @@
           <text>天</text>
         </view>
         <view class = 'missionnameview'>
-          <view>
+          <view class = 'missionnameview1'>
             <text>{{content.name}}</text>
           </view>
-          <view>
+          <view class = 'missionnameview2'>
             <text>{{content.type}}</text>
           </view>
         </view>
