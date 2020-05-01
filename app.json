@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/backend/backend",
     "pages/ing/ing",
     "pages/recommend/recommend",
     "pages/my/my",

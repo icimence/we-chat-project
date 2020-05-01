@@ -1,0 +1,5 @@
+<view class="container">
+  <input type="text" class="input" bindinput='input'/>
+  <button bindtap="backend">cal</button>
+  <view>{{ result }}</view>
+</view>
