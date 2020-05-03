@@ -10,6 +10,9 @@
       <view class = 'username'>
         <open-data type="userNickName" lang="zh_CN" ></open-data>
       </view>
+      <view class = 'feedbackview'>
+      <navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover' open-type="switchTab" url="/pages/recommend/recommend">点击浏览推荐内容</navigator>
+    </view>
     </view>
     <view class="switch-type">
       <view class = 'firstbtn'>
@@ -60,9 +63,6 @@
           <text class = 'titletext'>当前收藏夹为空，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover' open-type="switchTab" url="/pages/recommend/recommend">点击浏览推荐内容</navigator>
         </view>
       </view>
-    </view>
-    <view class = 'feedbackview'>
-      <button class='feedback' open-type="feedback" style="background-image:url('https://nandodu-blog.oss-cn-shanghai.aliyuncs.com/feedback.png'); background-size: 100% 100%; plain='true'; background-color: white;"></button>
     </view>
   </view>
 </view>
