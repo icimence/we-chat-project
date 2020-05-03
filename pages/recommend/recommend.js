@@ -7,10 +7,32 @@ Page({
   data: {
       isHidenLoadMore:true,
       currentTab:0,
+      Tag:"",
+      info:"222",
+      inList: [],
 
-      inList: [{ style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }],
+      outList: []
+  },
 
-      outList: [{ style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }]
+  onLoad:function(options){
+      var that = this
+      const wxreq=wx.request({
+        url: 'http://localhost:8000/api/v1.0/rec/recommend',
+        data:{
+            Tag: "计算机.4"
+        },
+        success:function(e){
+            console.log(e.data)
+                that.setData({
+                    inList: e.data
+                })
+        },
+        fail:function(e){
+            this.setData({
+                inLinst:[{ style: '签到', coin: '+50', time: '01:49:46' }, { style: '分享美文', coin: '+300', time: '05:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' }]
+            })
+        }
+      })
   },
   /** 
     * 滑动切换tab  
@@ -52,7 +74,7 @@ Page({
       var maxNum = 1000; //最多可加载条目
 
       var newList = [{ style: '签到', coin: '+50', time: '01:49:46' }, { style: '分享美文', coin: '+300', time: '05:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' }];
-
+    
       var inList = that.data.inList;
       if (inList.length < maxNum) {
           that.setData({

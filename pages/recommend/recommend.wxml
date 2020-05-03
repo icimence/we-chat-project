@@ -13,10 +13,10 @@
     <scroll-view scroll-y="true" bindscrolltolower="loadIncome" class="tab-list-content {{currentTab==0?'active':''}}">
         <view class="tab-list-item" wx:for="{{inList}}">
             <view class="tab-list-item-detail">
-                <text>{{item.style}}</text>
-                <text class="tab-list-item-after">{{item.coin}}</text>
+                <text>{{item.book_name}}</text>
+                <text class="tab-list-item-after">{{item.price}}</text>
             </view>
-            <view class="tab-list-item-time">{{item.time}}</view>
+            <view class="tab-list-item-time">{{item.introduction}}</view>
         </view>
         <view hidden="{{isHidenLoadMore}}">
             <loading type="circle">加载中</loading>
@@ -37,6 +37,6 @@
     </scroll-view>
     <!-- 已取消 -->
     <view class="tab-list-content {{currentTab==2?'active':''}}">
-        <text>111</text>
+        <text>{{info}}</text>
     </view>
 </view>

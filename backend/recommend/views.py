@@ -9,10 +9,10 @@ def getRecommend(request):
     tag = res_list[0]
     num = int(res_list[1])
     return_list = searchBook.getResqutes(tag, num)
-    result = "["
-    for i in range(len(return_list) - 1):
-        result += str(return_list[i])
-        result += ","
-    result += str(return_list[-1])
-    result += "]"
-    return HttpResponse(result)
+    # result = "["
+    # for i in range(len(return_list) - 1):
+    #     result += str(return_list[i])
+    #     result += ","
+    # result += str(return_list[-1])
+    # result += "]"
+    return HttpResponse(return_list)
