@@ -7,8 +7,11 @@ Page({
   data: {
       isHidenLoadMore:true,
       currentTab:0,
+      isHidenInfo:true,
       Tag:"",
-      info:"222",
+      author:"作者",
+      isHidenIntro:true,
+      info:"加载失败了！刷新一下试试",
       inList: [],
 
       outList: []
@@ -16,20 +19,35 @@ Page({
 
   onLoad:function(options){
       var that = this
+      wx.showNavigationBarLoading()
+      that.setData({
+          isHidenLoadMore:false
+      })
       const wxreq=wx.request({
         url: 'http://localhost:8000/api/v1.0/rec/recommend',
         data:{
-            Tag: "计算机.4"
+            Tag: "计算机"
         },
         success:function(e){
             console.log(e.data)
+            if (e.statusCode == 200) {
                 that.setData({
-                    inList: e.data
+                    isHidenLoadMore:true,
+                    inList: e.data,
+                    isHidenInfo:true,
+                    isHidenIntro:false
                 })
+                wx.hideNavigationBarLoading()
+            }
+            else{
+                that.setData({
+                    isHidenInfo:false
+                })
+            }
         },
         fail:function(e){
             this.setData({
-                inLinst:[{ style: '签到', coin: '+50', time: '01:49:46' }, { style: '分享美文', coin: '+300', time: '05:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' }]
+                isHidenInfo:false
             })
         }
       })
@@ -44,12 +62,45 @@ Page({
 
   },
   onPullDownRefresh: function () {
+      var that = this
+      that.setData({
+          isHidenIntro:true,
+          isHidenLoadMore:false
+      })
     wx.showNavigationBarLoading()
+    const wxreq=wx.request({
+        url: 'http://localhost:8000/api/v1.0/rec/recommend',
+        data:{
+            Tag: "计算机"
+        },
+        success:function(e){
+            console.log(e.statusCode)
+            if (e.statusCode == 200) {
+                that.setData({
+                    isHidenLoadMore:true,
+                    inList: e.data,
+                    isHidenInfo:true,
+                    isHidenIntro:false
+                })
+                wx.hideNavigationBarLoading()
+                wx.stopPullDownRefresh()
+            }
+            else{
+                that.setData({
+                    isHidenInfo:false
+                })
+            }
+        },
+        fail:function(e){
+            that.setData({
+                isHidenInfo:false
+            })
+        }
+      })
     setTimeout(function () {
       // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    }, 1500);
+      isHidenInfo:false
+    }, 3500);
   },
   /** 
    * 点击tab切换 
