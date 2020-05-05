@@ -47,8 +47,10 @@ Page({
         },
         fail:function(e){
             this.setData({
-                isHidenInfo:false
+                isHidenInfo:false,
+                isHidenLoadMore:true
             })
+            wx.hideNavigationBarLoading()
         }
       })
   },
@@ -93,8 +95,10 @@ Page({
         },
         fail:function(e){
             that.setData({
-                isHidenInfo:false
+                isHidenInfo:false,
+                isHidenLoadMore: true
             })
+            wx.hideNavigationBarLoading()
         }
       })
     setTimeout(function () {
