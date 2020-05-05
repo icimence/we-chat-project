@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/recommend/recommend",
     "pages/login/login",
+    "pages/recommend/recommend",
     "pages/ing/ing",
     "pages/mission/mission",
     "pages/my/my"
