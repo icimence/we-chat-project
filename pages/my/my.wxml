@@ -32,24 +32,49 @@
       </view>
     </view>
     <view class = 'goal' hidden='{{hiddenGoal}}'>
-      <view class = 'title'>
-        <view>
-          <image src = '/icons/emptyicon.png' class = 'empty'></image>
+      <view hidden = '{{hiddenZhuanye}}'>
+        <view class = 'title'>
+          <view>
+            <image src = '/icons/emptyicon.png' class = 'empty'></image>
+          </view>
+          <view class = 'nihaimeiyouxuanzeguorenhezhuanyedianjixuanze'>
+            <view class = 'nihaimeiyouxuanzeguorenhezhuanye'>
+              <text class = 'titletext'>你还没有选择过任何专业，</text>
+            </view>
+            <view class = 'dianjixuanze'>
+              <picker bindchange="bindMajorPickerChange" range="{{majors}}">
+                点击选择
+              </picker>
+            </view>
+          </view>
         </view>
-        <view>
-          <text class = 'titletext'>你还没有选择过任何专业，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>点击选择</navigator>
-        </view>
+      </view>
+      <view wx:for="{{major}}" data-index='{{index}}' bind:longpress="deleteItem" class = 'zhuanyeList' hidden = '{{!hiddenZhuanye}}'>
+        <view class="weui-cell__bd">{{item}}</view>
+      </view>
+      <view hidden = '{{!hiddenZhuanye}}'>
+        <picker bindchange="bindMajorPickerChange" range="{{majors}}">
+          继续添加
+        </picker>
+      </view>
+      <view hidden = '{{!hiddenZhuanye}}'>
+        小提示：长按专业名称可删除
       </view>
     </view>
     <view class = 'urgency' hidden='{{hiddenUrgency}}'>
-      <view class = 'title'>
-        <view>
-          <image src = '/icons/emptyicon.png' class = 'empty'></image>
-        </view>
-        <view>
-          <text class = 'titletext'>当前暂无紧急任务，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover'>点击创建新的任务</navigator>
+      <view hidden='{{renwuHidden}}'>
+        <view class = 'title'>
+          <view>
+            <image src = '/icons/emptyicon.png' class = 'empty'></image>
+          </view>
+          <view>
+            <text class = 'titletext'>当前暂无紧急任务，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover' url='/pages/ing/ing' open-type='switchTab'>点击创建新的任务</navigator>
+          </view>
         </view>
       </view>
+      <view class='jinjimission' hidden='{{!renwuHidden}}'>
+        <text>{{jinjirenwu}}</text>
+    </view>
     </view>
     <view class = 'collection' hidden='{{hiddenCollection}}'>
       <view class = 'title'>

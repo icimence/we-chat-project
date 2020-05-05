@@ -1,0 +1,19 @@
+.section{
+   font-size:28rpx;
+   margin-left: 50rpx;
+   margin-top: 30rpx;
+  }
+.on{
+  display: block
+  }
+.off{
+  display: none
+}
+.picker{
+  width: 500rpx;
+  height: 50rpx;
+}
+.shururenwumingcheng{
+  width: 300rpx;
+  height: 100rpx;
+}

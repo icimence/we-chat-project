@@ -4,7 +4,7 @@
     <image src="/images/logo.png" class="logo"></image>
   </view>
   <text class="words">记录奋斗的足迹</text>
-  <button class="button" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+  <button class="button" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="authorize">授权登录</button>
   </view>
 </view>
 

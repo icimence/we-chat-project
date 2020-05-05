@@ -1,0 +1,46 @@
+<view class="missiontype">
+  <view class="missiontypetitle">任务类别</view>
+  <picker bindchange="bindTypePickerChange" value="{{typeIndex1}}" range="{{typeArray}}">
+    <view>
+      <text hidden='{{missiontypeHidden}}'>{{newtype}}</text>
+    </view>
+  </picker>
+</view>
+<view class='majorname'>
+  <view class='majornametitle'>相关专业</view>
+  <picker bindchange='bindMajorPickerChange' value='{{majorIndex1}}' range='{{majorArray}}'>
+    <view>
+      <text>{{newmajor}}</text>
+    </view>
+  </picker>
+</view>
+<view class="section {{reply1?'on':'off'}}">
+  <input name="diytype" placeholder="请输入任务类别" bindinput="missiontypeInput"/>
+</view>
+<view class='missionname'>
+  <view class='missionnametitle'>任务名称</view>
+</view>
+<view class='shururenwumingcheng'>
+  <input name='diyname' placeholder="请输入任务名称" bindinput='missionnameInput'/>
+</view>
+<view class="missiontime">
+  <view class="missiontimetitle">任务DDL</view>
+  <picker mode="date" value="{{date}}" start="2020-05-04" end="2120-05-04" bindchange="bindDateChange">
+    <view class="picker">
+      {{newdate}}
+    </view>
+  </picker>
+</view>
+<button class='baocunanniu' bindtap='save'>保存</button>
+<!-->
+<view class='missionname'>
+  <view class='missionnametitle'>任务名称</view>
+</view>
+<view class='missiontimename'>
+  <view class='missiontimetitle'>任务DDL</view>
+  <picker bindchange='bindTimePickerChange' value="{{typeIndex2}}" range="{{timeArray}}">
+    <view>
+      <text>{{timeArray[timeIndex}}</text>
+    </view>
+  </picker>
+</view>

@@ -1,6 +1,6 @@
 <view class='ingpage'>
 	<view class='topInfo'>
-		<navigator open-type="switchTab" url="/pages/recommend/recommend">
+		<navigator open-type="navigate" url="/pages/mission/mission">
 			<image src='/icons/add.png' class='topImage1'></image>
 		</navigator>
 		<image src='/icons/ask.png' class='topImage2'></image>
