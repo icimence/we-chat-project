@@ -7,10 +7,52 @@ Page({
   data: {
       isHidenLoadMore:true,
       currentTab:0,
+      isHidenInfo:true,
+      Tag:"",
+      author:"作者",
+      isHidenIntro:true,
+      info:"加载失败了！刷新一下试试",
+      inList: [],
 
-      inList: [{ style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }, { style: '签到', coin: '+100', time: '01:49:46' }, { style: '分享美文', coin: '+500', time: '05:49:46' }],
+      outList: []
+  },
 
-      outList: [{ style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }, { style: '兑换礼品', coin: '-1000', time: '01:49:46' }, { style: '兑换礼品', coin: '-50000', time: '05:49:46' }]
+  onLoad:function(options){
+      var that = this
+      wx.showNavigationBarLoading()
+      that.setData({
+          isHidenLoadMore:false
+      })
+      const wxreq=wx.request({
+        url: 'http://localhost:8000/api/v1.0/rec/recommend',
+        data:{
+            Tag: "计算机"
+        },
+        success:function(e){
+            console.log(e.data)
+            if (e.statusCode == 200) {
+                that.setData({
+                    isHidenLoadMore:true,
+                    inList: e.data,
+                    isHidenInfo:true,
+                    isHidenIntro:false
+                })
+                wx.hideNavigationBarLoading()
+            }
+            else{
+                that.setData({
+                    isHidenInfo:false
+                })
+            }
+        },
+        fail:function(e){
+            this.setData({
+                isHidenInfo:false,
+                isHidenLoadMore:true
+            })
+            wx.hideNavigationBarLoading()
+        }
+      })
   },
   /** 
     * 滑动切换tab  
@@ -22,12 +64,47 @@ Page({
 
   },
   onPullDownRefresh: function () {
+      var that = this
+      that.setData({
+          isHidenIntro:true,
+          isHidenLoadMore:false
+      })
     wx.showNavigationBarLoading()
+    const wxreq=wx.request({
+        url: 'http://localhost:8000/api/v1.0/rec/recommend',
+        data:{
+            Tag: "计算机"
+        },
+        success:function(e){
+            console.log(e.statusCode)
+            if (e.statusCode == 200) {
+                that.setData({
+                    isHidenLoadMore:true,
+                    inList: e.data,
+                    isHidenInfo:true,
+                    isHidenIntro:false
+                })
+                wx.hideNavigationBarLoading()
+                wx.stopPullDownRefresh()
+            }
+            else{
+                that.setData({
+                    isHidenInfo:false
+                })
+            }
+        },
+        fail:function(e){
+            that.setData({
+                isHidenInfo:false,
+                isHidenLoadMore: true
+            })
+            wx.hideNavigationBarLoading()
+        }
+      })
     setTimeout(function () {
       // complete
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-    }, 1500);
+      isHidenInfo:false
+    }, 3500);
   },
   /** 
    * 点击tab切换 
@@ -52,7 +129,7 @@ Page({
       var maxNum = 1000; //最多可加载条目
 
       var newList = [{ style: '签到', coin: '+50', time: '01:49:46' }, { style: '分享美文', coin: '+300', time: '05:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' },{ style: '签到', coin: '+50', time: '01:49:46' }];
-
+    
       var inList = that.data.inList;
       if (inList.length < maxNum) {
           that.setData({

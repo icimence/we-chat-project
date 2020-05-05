@@ -16,7 +16,7 @@
   color: rgb(58, 186, 248);
 }
 .tab-content{
-  background-color: rgb(234, 234, 239);
+  background-color: #fad73f;
   margin: 0 24rpx;
   /* margin-top:368rpx; */
   position: fixed;
@@ -24,6 +24,37 @@
   left: 0;
   right: 0;
   bottom: 0;
+}
+.bookimg{
+  zoom: 75%;
+  margin-top: 50rpx;
+  margin-left: -80rpx;
+  display: inline-block;
+}
+.intro{
+  font-size: 47rpx;
+  float: right;
+  width: 280rpx;
+  margin-right: 20rpx;
+  height: 0rpx;
+  margin-top: -400rpx;
+  text-align: center;
+}
+
+.author{
+  font-size: 37rpx;
+  float: right;
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: pre-line;
+  width: 280rpx;
+  margin-top: -220rpx;
+  margin-right: 20rpx;
+  height: 0rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  align-content: center;
 }
 .tab-list-content{
   display: none;
@@ -46,4 +77,33 @@
 .tab-list-item-time{
   color: rgb(136, 136, 136);
   font-size: 12px;
+}
+
+.introduction{
+  margin-top: 20rpx;
+  margin-left: 70rpx;
+  font-size: 47rpx;
+  font-weight: bold;
+}
+
+.introMessage{
+  text-align: center;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  font-weight: normal;
+}
+
+.bName{
+  font-size: 47rpx;
+  margin-left: 70rpx;
+  font-weight: bold;
+}
+.bNameInfo{
+  font-size: 35rpx;
+  text-align: center;
+}
+.function{
+  align-content: center;
+  text-align: center;
+  margin-top: 30rpx;
 }
