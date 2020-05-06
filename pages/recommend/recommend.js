@@ -1,4 +1,6 @@
-// pages/me-customer/me-customer.js
+const app = getApp()
+const cookieUtil = require('../../utils/cookie.js')
+
 Page({
  
   /**
@@ -24,7 +26,11 @@ Page({
           isHidenLoadMore:false
       })
       const wxreq=wx.request({
+<<<<<<< HEAD
         url: 'http://127.0.0.1:8000/api/v1.0/rec/recommend',
+=======
+        url: app.globalData.serverUrl + app.globalData.apiVersion +'/rec/recommend',
+>>>>>>> refs/remotes/origin/dev
         data:{
             Tag: "计算机"
         },
@@ -71,7 +77,11 @@ Page({
       })
     wx.showNavigationBarLoading()
     const wxreq=wx.request({
+<<<<<<< HEAD
       url: 'http://127.0.0.1:8000/api/v1.0/rec/recommend',
+=======
+        url: app.globalData.serverUrl + app.globalData.apiVersion +'/rec/recommend',
+>>>>>>> refs/remotes/origin/dev
         data:{
             Tag: "计算机"
         },

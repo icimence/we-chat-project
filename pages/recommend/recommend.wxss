@@ -88,9 +88,10 @@
 
 .introMessage{
   text-align: center;
-  font-size: 30rpx;
+  font-size: 35rpx;
   margin-top: 20rpx;
   font-weight: normal;
+  width: 680rpx;
 }
 
 .bName{

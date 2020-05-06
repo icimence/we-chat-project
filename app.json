@@ -2,9 +2,9 @@
   "pages": [
     "pages/my/my",
     "pages/login/login",
-    "pages/mission/mission",
+    "pages/recommend/recommend",
     "pages/ing/ing",
-    "pages/recommend/recommend"
+    "pages/mission/mission"
   ],
   "tabBar": {
     "selectedColor": "#fad73f",
