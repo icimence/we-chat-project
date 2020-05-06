@@ -24,7 +24,7 @@ Page({
           isHidenLoadMore:false
       })
       const wxreq=wx.request({
-        url: 'http://localhost:8000/api/v1.0/rec/recommend',
+        url: 'http://127.0.0.1:8000/api/v1.0/rec/recommend',
         data:{
             Tag: "计算机"
         },
@@ -71,7 +71,7 @@ Page({
       })
     wx.showNavigationBarLoading()
     const wxreq=wx.request({
-        url: 'http://localhost:8000/api/v1.0/rec/recommend',
+      url: 'http://127.0.0.1:8000/api/v1.0/rec/recommend',
         data:{
             Tag: "计算机"
         },

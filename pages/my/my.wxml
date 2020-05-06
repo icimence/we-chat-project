@@ -1,8 +1,11 @@
 <view class = 'mypage'>
+  <!--我的页面顶部背景图片-->
   <view>
     <image src='/images/mypage_background.png' class = 'topImage'></image>
   </view>
+  <!--我的页面除背景图片外全部内容-->
   <view class = 'content'> 
+    <!--用户logo及用户名称信息栏-->
     <view class = 'topinfo'>
       <view class = 'logo'>
         <open-data type="userAvatarUrl" mode = 'cover' ></open-data>
@@ -10,10 +13,12 @@
       <view class = 'username'>
         <open-data type="userNickName" lang="zh_CN" ></open-data>
       </view>
+      <!--反馈按钮-->
       <view class = 'feedbackview'>
-      <navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover' open-type="switchTab" url="/pages/recommend/recommend">点击浏览推荐内容</navigator>
+        <button class='feedback' open-type="feedback" style="background-image:url('https://nandodu-blog.oss-cn-shanghai.aliyuncs.com/feedback.png'); background-size: 100% 100%; plain='true'; background-color: white;"></button>
+      </view>
     </view>
-    </view>
+    <!--三个按钮所在一栏-->
     <view class="switch-type">
       <view class = 'firstbtn'>
         <view class="btn {{currentSelectTripType == 'mubiao' ? 'active' : ''}}" bindtap='selectedMubiao' data-id='mubiao'>
@@ -34,7 +39,9 @@
         </view>
       </view>
     </view>
+    <!--目标专业显示内容-->
     <view class = 'goal' hidden='{{hiddenGoal}}'>
+      <!--专业为空时显示内容-->
       <view hidden = '{{hiddenZhuanye}}'>
         <view class = 'title'>
           <view>
@@ -45,26 +52,35 @@
               <text class = 'titletext'>你还没有选择过任何专业，</text>
             </view>
             <view class = 'dianjixuanze'>
-              <picker bindchange="bindMajorPickerChange" range="{{majors}}">
+              <picker bindchange="bindMajorPickerChange" range="{{majors}}" class = 'modifytext' hover-class = 'nav-hover'>
                 点击选择
               </picker>
             </view>
           </view>
         </view>
       </view>
-      <view wx:for="{{major}}" data-index='{{index}}' bind:longpress="deleteItem" class = 'zhuanyeList' hidden = '{{!hiddenZhuanye}}'>
-        <view class="weui-cell__bd">{{item}}</view>
-      </view>
-      <view hidden = '{{!hiddenZhuanye}}'>
-        <picker bindchange="bindMajorPickerChange" range="{{majors}}">
-          继续添加
-        </picker>
-      </view>
-      <view hidden = '{{!hiddenZhuanye}}'>
-        小提示：长按专业名称可删除
+      <!--专业不为空时显示内容-->
+      <view class='zhuanyeneirong'>
+        <view class='zhuanyexiang'>
+          <view wx:for="{{major}}" data-index='{{index}}' bind:longpress="deleteItem" class = 'zhuanyeList' hidden = '{{!hiddenZhuanye}}'>
+            <button class="weui-cell__bd"><text>{{item}}</text></button>
+          </view>
+        </view>
+        <view hidden = '{{!hiddenZhuanye}}' class='anniu'>
+          <view>
+            <picker bindchange="bindMajorPickerChange" range="{{majors}}">
+              <image src='/icons/addIcon.png' class='jiahao'></image>
+            </picker>
+          </view>
+        </view>
+        <view hidden = '{{!hiddenZhuanye}}' class='xiaotishi'>
+          <text>小提示：长按专业名称可删除</text>
+        </view>
       </view>
     </view>
+    <!--紧急任务显示内容-->
     <view class = 'urgency' hidden='{{hiddenUrgency}}'>
+      <!--任务为空时显示内容-->
       <view hidden='{{renwuHidden}}'>
         <view class = 'title'>
           <view>
@@ -75,11 +91,17 @@
           </view>
         </view>
       </view>
+      <!--任务不为空时显示内容-->
       <view class='jinjimission' hidden='{{!renwuHidden}}'>
-        <text>{{jinjirenwu}}</text>
+        <text>{{jinjirenwubar}}</text>
+        <text>{{jinjirenwuname}}</text>
+        <text>{{jinjirenwutype}}</text>
+        <text>{{jinjirenwutime}}</text>
+      </view>
     </view>
-    </view>
+    <!--我的收藏显示内容-->
     <view class = 'collection' hidden='{{hiddenCollection}}'>
+      <!--收藏为空时显示内容-->
       <view class = 'title'>
         <view>
           <image src = '/icons/emptyicon.png' class = 'empty'></image>

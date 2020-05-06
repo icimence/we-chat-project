@@ -1,15 +1,20 @@
 <view class='ingpage'>
-	<view class='topInfo'>
+	<!--顶部添加按钮以及帮助说明-->
+  <view class='topInfo'>
 		<navigator open-type="navigate" url="/pages/mission/mission">
 			<image src='/icons/add.png' class='topImage1'></image>
 		</navigator>
 		<image src='/icons/ask.png' class='topImage2'></image>
 	</view>
+  <!--分类条及分类内容-->
 	<block wx:for-items="{{missionInfoData}}">
-		<view class="bar" bindtap='toggleBtn' id="{{item.id}}">
-			<image class='barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
+		<!--分类条-->
+    <view class="bar" bindtap='toggleBtn' id="{{item.id}}">
+			<!--分类条三角指示符-->
+      <image class='barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
 			<image class='barimage {{item.id > 0?"hidden":""}}' src='{{item.imgurl1}}'></image>
-			<view class='barinfo'>
+			<!--分类条文字信息-->
+      <view class='barinfo'>
 				<view class='barname'>
 					<text>{{item.barname}}</text>
 				</view>
@@ -20,7 +25,8 @@
 				</view>
 			</view>
 		</view>
-		<block wx:for-items="{{item.content}}" wx:for-item="content">
+    <!--分类内容-->
+		<view wx:for-items="{{item.content}}" wx:for-item="content" bind:longpress="deleteItem" data-barname='{{item.barname}}' data-name='{{content.name}}' data-major='{{content.type}}' data-time='{{content.day}}'>
 			<view class="mission {{item.id > 0?'hidden':''}}">
 				<view class='timeimageview'>
 					<image class='timeimage' src='/icons/resttime.png'></image>
@@ -41,6 +47,21 @@
 					<image class='stateimage' src='{{content.statecolor}}'></image>
 				</view>
 			</view>
-		</block>
+		</view>
 	</block>
+  <!--任务为空时页面-->
+  <view class='missionEmpty' hidden='{{missionEmpty}}'>
+    <view>
+      <image src='/images/star.png' class='star'></image>
+    </view>
+    <view>
+      <image src='/images/ufo.png' class='ufo'></image>
+    </view>
+    <view>
+      <image src='/images/xingqiu.png' class='xingqiu'></image>
+    </view>
+    <view class='emptytext'>
+      当前暂无任务，点击左上角“+”添加任务吧！
+    </view>
+  </view>
 </view>

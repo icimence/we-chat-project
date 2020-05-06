@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/recommend/recommend",
+    "pages/my/my",
     "pages/login/login",
-    "pages/ing/ing",
     "pages/mission/mission",
-    "pages/my/my"
+    "pages/ing/ing",
+    "pages/recommend/recommend"
   ],
   "tabBar": {
     "selectedColor": "#fad73f",

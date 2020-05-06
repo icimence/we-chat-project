@@ -15,5 +15,72 @@
 }
 .shururenwumingcheng{
   width: 300rpx;
-  height: 100rpx;
+  height: 50rpx;
+}
+
+.missionContent {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: space-around
+}
+
+.typetitle text {
+  font-size: 40rpx;
+}
+
+.typetitle {
+  background: #fad42cfa;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  box-shadow:0px 4px 4px 4px #DDDDDD;
+  width: 200rpx;
+  border-radius: 30rpx;
+}
+
+.toptypetitle {
+  background: #fad42cfa;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 50rpx;
+  box-shadow:0px 4px 4px 4px #DDDDDD;
+  width: 200rpx;
+  border-radius: 30rpx;
+}
+
+.toptypetitle text {
+  font-size: 40rpx;
+}
+
+.baocunanniu {
+  margin-top: 60rpx;
+  width: 600rpx;
+  background-color: #fad42cfa;
+  border-radius: 98rpx;
+  box-shadow:0px 2px 4px 2px #DDDDDD;
+}
+
+.titlename {
+  margin-left: 17rpx;
+  font-family: FangSong;
+  font-weight: 600
+}
+
+.huojian {
+  height: 500rpx;
+  width: 500rpx;
+  margin-left: -260rpx;
+}
+
+.tuwen {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.section {
+  margin-top: -10rpx;
+  margin-left: 0rpx;
 }

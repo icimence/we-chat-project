@@ -85,6 +85,13 @@ Page({
     })
   },
 
+  bindblur: function(e) {
+    console.log('我点击了')
+    this.setData({
+      reply1: false
+    })
+  },
+
   missiontypeInput: function(e) {
     this.setData({
       newtype: e.detail.value
