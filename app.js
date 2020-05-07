@@ -58,7 +58,7 @@ App({
     userInfo: null,
     inList:[],
     appId: 'wxb872058495dd7751',
-    serverUrl: 'http://192.168.3.12:8000',
+    serverUrl: 'http://127.0.0.1:8000',
     apiVersion: '/api/v1.0',
     auth: {
       isAuthorized: false
