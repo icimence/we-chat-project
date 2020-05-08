@@ -36,13 +36,13 @@
 	<!-- 推荐竞赛 -->
 	<view class="tab-list-content {{currentTab==1?'active':''}}">
 		<view class="comp">
-			<image src="{{compImg}}" class="compImg"></image>
-			<text class="compName">{{compList.comp_name}}</text>
-			<view class="compIntro">{{compList.introduction}}</view>
+			<image src="{{compImg}}" hidden="{{isHidenIntro}}" class="compImg"></image>
+			<text class="compName" hidden="{{isHidenIntro}}">{{compList.comp_name}}</text>
+			<view class="compIntro" hidden="{{isHidenIntro}}">{{compList.introduction}}</view>
 			<view class="button">
-				<button bindtap="gotoCompLink" type="primary" class="leftButton" size="mini">查看详情</button>
-				<button bindtap="addCompMission" type="primary" class="defaultButton" size="mini">添加到任务</button>
-				<button bindtap="addCompFavour" type="primary" class="defaultButton" size="mini">添加到收藏</button>
+				<button bindtap="gotoCompLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
+				<button bindtap="addCompMission" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+				<button bindtap="addCompFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
 			</view>
 		</view>
 		<view hidden="{{isHidenLoadMore}}">
