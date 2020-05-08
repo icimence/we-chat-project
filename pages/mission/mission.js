@@ -8,11 +8,11 @@ Page({
     majorArray: ['计算机', '经济学'],
     typeIndex: 0,
     majorIndex: 0,
-    newtype: '自定义',
+    newtype: '点击选择任务类别',
     missiontypeHidden: false,
-    newname: '自定义',
-    newdate: '自定义',
-    newmajor: '自定义',
+    newname: '请选择',
+    newdate: '请选择完成日期',
+    newmajor: '点击选择相关专业',
     mission: [],
     missionCache: [],
     typeCache: [],
@@ -85,6 +85,13 @@ Page({
     })
   },
 
+  bindblur: function(e) {
+    console.log('我点击了')
+    this.setData({
+      reply1: false
+    })
+  },
+
   missiontypeInput: function(e) {
     this.setData({
       newtype: e.detail.value
@@ -124,13 +131,36 @@ Page({
       typeArray: typeArr
     })
     var that = this
-    if(that.data.newtype == '自定义' || that.data.newtype == '自定义' || that.data.newname == '自定义' || that.data.newmajor == '自定义') {
+    if(that.data.newtype == '点击选择任务类别') {
       wx.showToast({
-        title: '请补全任务信息!',
+        title: '请选择任务类别',
         icon: 'none'
       })
-      return
+      return 
     }
+    else if(that.data.newmajor == '点击选择相关专业') {
+      wx.showToast({
+        title: '请选择相关专业',
+        icon: 'none'
+      })
+      return 
+    }
+    else if(that.data.newname == '请选择' ) {
+      wx.showToast({
+        title: '请填写任务名字',
+        icon: 'none'
+      })
+      return 
+    }
+    else if(that.data.newdate == '请选择完成日期') {
+      wx.showToast({
+        title: '请选择完成日期',
+        icon: 'none'
+      })
+      return 
+    }
+    
+    
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
@@ -168,6 +198,7 @@ Page({
         console.log('kkkkkkk')
         wx.showToast({
           title: '保存成功',
+          duration:1000
         }),
         wx.reLaunch({
           url: '/pages/ing/ing',

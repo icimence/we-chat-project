@@ -1,15 +1,16 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/recommend/recommend",
-    "pages/ing/ing",
+    "pages/my/my",
     "pages/mission/mission",
-    "pages/my/my"
+    "pages/login/login",
+    
+    "pages/ing/ing"
+
   ],
   "tabBar": {
     "selectedColor": "#fad73f",
-    "list": [
-      {
+    "list": [{
         "text": "推荐",
         "pagePath": "pages/recommend/recommend",
         "iconPath": "icons/recommend.png",

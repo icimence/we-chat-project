@@ -21,8 +21,10 @@
 			<view hidden="{{isHidenIntro}}" class="introduction">图书简介</view>
 			<view hidden="{{isHidenIntro}}" class="introMessage">{{bookList.introduction}}</view>
 		</view>
-		<view class="function">
-			<button bindtap="goToPage" type="primary" hidden="{{isHidenIntro}}" size="mini">添加到任务</button>
+		<view class="button">
+			<button bindtap="gotoBookLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
+			<button bindtap="addBookMission" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+			<button bindtap="addBookFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
 		</view>
 		<view hidden="{{isHidenLoadMore}}">
 			<loading type="circle">加载中</loading>
@@ -33,11 +35,15 @@
 	</view>
 	<!-- 推荐竞赛 -->
 	<view class="tab-list-content {{currentTab==1?'active':''}}">
-		<view>
-			<view>
-				
+		<view class="comp">
+			<image src="{{compImg}}" class="compImg"></image>
+			<text class="compName">{{compList.comp_name}}</text>
+			<view class="compIntro">{{compList.introduction}}</view>
+			<view class="button">
+				<button bindtap="gotoCompLink" type="primary" class="leftButton" size="mini">查看详情</button>
+				<button bindtap="addCompMission" type="primary" class="defaultButton" size="mini">添加到任务</button>
+				<button bindtap="addCompFavour" type="primary" class="defaultButton" size="mini">添加到收藏</button>
 			</view>
-			<view>{{compList.comp_name}}</view>
 		</view>
 		<view hidden="{{isHidenLoadMore}}">
 			<loading type="circle">加载中</loading>

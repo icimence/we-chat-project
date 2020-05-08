@@ -1,19 +1,104 @@
-.section{
-   font-size:28rpx;
-   margin-left: 50rpx;
-   margin-top: 30rpx;
-  }
-.on{
+.section {
+  font-size: 28rpx;
+  margin-left: 50rpx;
+  margin-top: 30rpx;
+}
+
+.on {
   display: block
-  }
-.off{
+}
+
+.off {
   display: none
 }
-.picker{
+
+.picker {
   width: 500rpx;
   height: 50rpx;
 }
-.shururenwumingcheng{
+
+.shururenwumingcheng {
   width: 300rpx;
-  height: 100rpx;
+  height: 50rpx;
+}
+
+.missionContent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 60vh;
+  justify-content: space-around
+}
+
+.missiontype {
+  justify-content: center;
+  align-items: center;
+}
+
+.typetitle text {
+  font-size: 40rpx;
+}
+
+.typetitle {
+  background: #fad42cfa;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 275rpx;
+  box-shadow: 0px 4px 4px 4px #DDDDDD;
+  width: 200rpx;
+  border-radius: 30rpx;
+}
+
+.toptypetitle {
+  background: #fad42cfa;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 275rpx;
+  margin-top: 50rpx;
+  box-shadow: 0px 4px 4px 4px #DDDDDD;
+  width: 200rpx;
+  border-radius: 30rpx;
+}
+
+.toptypetitle text {
+  font-size: 40rpx;
+}
+
+.baocunanniu {
+  margin-top: 60rpx;
+  width: 600rpx;
+  background-color: #fad42cfa;
+  border-radius: 98rpx;
+  box-shadow: 0px 2px 4px 2px #DDDDDD;
+}
+
+.titlename {
+  margin-left: 17rpx;
+  font-family: FangSong;
+  font-weight: 600
+}
+
+.bg {
+  z-index: -1;
+  zoom: 120%;
+  margin-left: -425rpx;
+  margin-top: 100rpx;
+}
+
+
+.tuwen {
+  display: flex;
+  flex-direction: row;
+}
+
+.section {
+  margin-top: -10rpx;
+  margin-left: 0rpx;
+}
+
+.introtext {
+  display: flex;
+  text-align: center;
 }

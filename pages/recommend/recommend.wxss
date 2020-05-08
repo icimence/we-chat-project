@@ -108,3 +108,43 @@
   text-align: center;
   margin-top: 30rpx;
 }
+
+.comp{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items:center;
+}
+
+.compImg{
+  border-radius: 10%;
+  zoom: 80%;
+  margin-top: 50rpx;
+}
+
+.compName{
+  font-weight: bold;
+  margin-top: 80rpx;
+  font-size: 15pt;
+  text-align: center;
+}
+
+.compIntro{
+  margin-top: 70rpx;
+  width: 600rpx;
+}
+
+.button{
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+}
+.leftButton{
+  margin-left: 20rpx;
+  width: 150rpx;
+}
+
+.defaultButton{
+  margin-left: 75rpx;
+  width: 150rpx;
+}

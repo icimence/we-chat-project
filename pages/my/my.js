@@ -12,14 +12,17 @@ Page({
     major: [],
     hiddenZhuanye: false,
     renwuHidden: false,
-    jinjirenwu: 'empty',
+    jinjirenwubar: 'empty',
+    jinjirenwuname: 'empty',
+    jinjirenwutype: 'empty',
+    jinjirenwutime: 'empty',
     renwu_list: [],
     missionCache: [],
     typeCache: [],
     majorCache: []
   },
 
-  onLoad: function (options) {
+  onShow: function (options) {
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
@@ -58,6 +61,7 @@ Page({
       that.setData({
         renwuHidden: false
       })
+      console.log("it's me")
     } else {
       var opeList = that.data.renwu_list
       var minTime = opeList[0].substr(opeList[0].length - 10)
@@ -68,11 +72,39 @@ Page({
           index = i
         }
       }
+      var saveList = opeList[index]
+      var indexList = that.findall(saveList, '?')
+      var bar = saveList.substr(0, indexList[0])
+      var name = saveList.substr(indexList[0] + 1, indexList[1] - indexList[0] - 1)
+      var type = saveList.substr(indexList[1] + 1, indexList[2] - indexList[1] - 1)
+      var time = saveList.substr(indexList[2] + 1, saveList.length)
+      console.log(bar)
+      console.log(name)
+      console.log(type)
+      console.log(time)
       that.setData({
-        jinjirenwu: opeList[index],
+        jinjirenwubar: bar,
+        jinjirenwuname: name,
+        jinjirenwutype: type,
+        jinjirenwutime: time,
         renwuHidden: true
       })
     }
+  },
+
+  findall: function (a, x) {
+    var results = []
+    var len = a.length
+    var pos = 0
+    while (pos < len) {
+      pos = a.indexOf(x, pos)
+      if (pos == -1) {
+        break
+      }
+      results.push(pos)
+      pos = pos + 1
+    }
+    return results
   },
 
   bindMajorPickerChange: function (e) {
@@ -133,27 +165,35 @@ Page({
       that.setData({
         hiddenZhuanye: false
       })
-    }
-    wx.request({
-      url: app.globalData.serverUrl + '/api/v1.0/auth/user',
-      method: 'POST',
-      data: {
-        major: that.data.major,
-        type: that.data.typeCache,
-        mission: that.data.missionCache
-      },
-      header: header,
-      success(res) {
-        console.log('kkkkkkk')
-        console.log(res)
-        console.log('kkkkkkk')
-        if (isShowModal) {
-          wx.showToast({
-            title: '保存成功',
-          })
+    } else if(that.data.major.length >= 4) {
+      wx.showToast({
+        title: '选择专业过多，请删除现有专业后尝试',
+        icon: 'none',
+        duration: 2000
+      })
+      that.onShow()
+    } else {
+      wx.request({
+        url: app.globalData.serverUrl + '/api/v1.0/auth/user',
+        method: 'POST',
+        data: {
+          major: that.data.major,
+          type: that.data.typeCache,
+          mission: that.data.missionCache
+        },
+        header: header,
+        success(res) {
+          console.log('kkkkkkk')
+          console.log(res)
+          console.log('kkkkkkk')
+          if (isShowModal) {
+            wx.showToast({
+              title: '保存成功',
+            })
+          }
         }
-      }
-    })
+      })
+    }
   },
 
   // 更新data 切换选中状态
