@@ -9,7 +9,7 @@
     <view>  
       <picker bindchange="bindTypePickerChange" value="{{typeIndex1}}" range="{{typeArray}}">
         <view>
-          <text hidden='{{missiontypeHidden}}' class="introtext">{{newtype}}</text>
+          <text hidden='{{missiontypeHidden}}'>{{newtype}}</text>
         </view>
       </picker>
       <!--任务类别输入框-->
@@ -22,7 +22,7 @@
       <view class='typetitle'><text class='titlename'>相关专业</text></view>
     </view>
     <!--专业名称选择器-->
-    <view class="introtext">  
+    <view>  
       <picker bindchange='bindMajorPickerChange' value='{{majorIndex1}}' range='{{majorArray}}'>
         <view>
           <text>{{newmajor}}</text>
@@ -50,10 +50,7 @@
       </picker>
     </view>
   </view>
-  <!--顶部图案-->
-  <view style="opacity:{{0.35}}" class = "bg">
-    <image src='/images/huojian.png' class='rocket' mode="aspectFit	"></image>
-  </view>
-</view>
-<!--保存按钮-->
+  <!--保存按钮-->
 <button class='baocunanniu' bindtap='save'>保存</button>
+</view>
+
