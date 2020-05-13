@@ -9,11 +9,12 @@ Page({
     majorCache: [],
     missionCache: [],
     typeCache: [],
+    collectionCache: [],
     pastMission: [],
     missionEmpty: true
   },
 
-  onLoad: function (options) {
+  onShow: function (options) {
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
@@ -27,7 +28,8 @@ Page({
           preLoadData: res.data.data.mission,
           majorCache: res.data.data.major,
           missionCache: res.data.data.mission,
-          typeCache: res.data.data.type
+          typeCache: res.data.data.type,
+          collectionCache: res.data.data.collection
         })
         console.log(that.data.preLoadData)
         that.showBar(that)
@@ -85,11 +87,12 @@ Page({
         data: {
           major: that.data.majorCache,
           type: that.data.typeCache,
-          mission: that.data.preLoadData
+          mission: that.data.preLoadData,
+          collection: that.data.collectionCache
         },
         header: header,
         success(res) {
-          that.onLoad()
+          that.onShow()
         }
       })
     }
@@ -125,6 +128,9 @@ Page({
         dict_data['content'] = []
         var dict_content_data = {}
         dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1)
+        if (dict_content_data['name'].length > 15) {
+          dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1).substr(0, 14) + "..."
+        }
         dict_content_data['type'] = opedata.substr(index_list[1] + 1, index_list[2] - index_list[1] - 1)
         dict_content_data['day'] = that.DateMinus(nowtime, opedata.substr(index_list[2] + 1, opedata.length - index_list[2]))
         if (dict_content_data['day'] < 0) {
@@ -137,6 +143,9 @@ Page({
       } else {
         var dict_content_data = {}
         dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1)
+        if (dict_content_data['name'].length > 15) {
+          dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1).substr(0, 14) + "..."
+        }
         dict_content_data['type'] = opedata.substr(index_list[1] + 1, index_list[2] - index_list[1] - 1)
         dict_content_data['day'] = that.DateMinus(nowtime, opedata.substr(index_list[2] + 1, opedata.length - index_list[2]))
         if(dict_content_data['day'] < 0) {
@@ -239,14 +248,15 @@ Page({
       data: {
         major: that.data.majorCache,
         type: that.data.typeCache,
-        mission: that.data.preLoadData
+        mission: that.data.preLoadData,
+        collection: that.data.collectionCache
       },
       header: header,
       success(res) {
         wx.showToast({
           title: '保存成功',
         })
-        that.onLoad()
+        that.onShow()
         console.log('??????????????')
         console.log(that.data.preLoadData)
         console.log('??????????????')

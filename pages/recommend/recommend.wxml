@@ -23,7 +23,10 @@
 		</view>
 		<view class="button">
 			<button bindtap="gotoBookLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
-			<button bindtap="addBookMission" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+			<!---添加时间选择器--->
+      <picker mode="date" value="{{date}}" start='{{nowtime}}' end="2120-05-04" bindchange="bindDateChangeBook">
+        <button type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+      </picker>
 			<button bindtap="addBookFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
 		</view>
 		<view hidden="{{isHidenLoadMore}}">
@@ -41,7 +44,10 @@
 			<view class="compIntro" hidden="{{isHidenIntro}}">{{compList.introduction}}</view>
 			<view class="button">
 				<button bindtap="gotoCompLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
-				<button bindtap="addCompMission" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+        <!---添加时间选择器--->
+        <picker mode="date" value="{{date}}" start='{{nowtime}}' end="2120-05-04" bindchange="bindDateChangeComp"> 
+				  <button type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+        </picker>
 				<button bindtap="addCompFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
 			</view>
 		</view>

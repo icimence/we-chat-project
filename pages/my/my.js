@@ -1,5 +1,6 @@
 const app = getApp()
 const cookieUtil = require('../../utils/cookie.js')
+var util = require('../../utils/util.js');
 
 Page({
   
@@ -12,14 +13,19 @@ Page({
     major: [],
     hiddenZhuanye: false,
     renwuHidden: false,
+    shoucangHidden: false,
     jinjirenwubar: 'empty',
     jinjirenwuname: 'empty',
     jinjirenwutype: 'empty',
     jinjirenwutime: 'empty',
     renwu_list: [],
+    shoucang_list: [],
     missionCache: [],
     typeCache: [],
-    majorCache: []
+    majorCache: [],
+    collectionCache: [],
+    items: [],
+    modalHidden: true
   },
 
   onShow: function (options) {
@@ -37,7 +43,9 @@ Page({
           renwu_list: res.data.data.mission,
           typeCache: res.data.data.type,
           majorCache: res.data.data.major,
-          missionCache: res.data.data.mission
+          missionCache: res.data.data.mission,
+          collectionCache: res.data.data.collection,
+          shoucang_list: res.data.data.collection
         })
         if(that.data.major.length > 0) {
           that.setData({
@@ -49,6 +57,8 @@ Page({
           })
         }
         that.ifHaveMission(that)
+        that.ifHaveCollection(that)
+        that.showCollection(that)
         console.log('hhhhhhh')
         console.log(res.data)
         console.log('hhhhhhh')
@@ -72,10 +82,14 @@ Page({
           index = i
         }
       }
+      var nowtime = util.formatTime(new Date())
       var saveList = opeList[index]
       var indexList = that.findall(saveList, '?')
       var bar = saveList.substr(0, indexList[0])
       var name = saveList.substr(indexList[0] + 1, indexList[1] - indexList[0] - 1)
+      if(name.length > 15) {
+        name = name.substr(0, 15) + '...'
+      }
       var type = saveList.substr(indexList[1] + 1, indexList[2] - indexList[1] - 1)
       var time = saveList.substr(indexList[2] + 1, saveList.length)
       console.log(bar)
@@ -92,6 +106,45 @@ Page({
     }
   },
 
+  ifHaveCollection: function(that) {
+    if(that.data.shoucang_list.length == 0) {
+      that.setData({
+        shoucangHidden: false
+      })
+    } else {
+      that.setData({
+        shoucangHidden: true
+      })
+    }
+  },
+
+  showCollection: function(that) {
+    console.log(that.data.shoucang_list)
+    var opeList = that.data.shoucang_list
+    var dict_list = []
+    if (opeList.length > 0) {
+      console.log(that.findall(opeList[0], '$'))
+    }
+    var id = 0
+    for (var i = 0; i < opeList.length; i++) {
+      var index_list = that.findall(opeList[i], '$')
+      var opedata = opeList[i]
+      var dict_data = {}
+      dict_data['Name'] = opedata.substr(0, index_list[0])
+      dict_data['ImageUrl'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1)
+      dict_data['AuthorName'] = opedata.substr(index_list[1] + 1, index_list[2] - index_list[1] - 1)
+      dict_data['Introduction'] = opedata.substr(index_list[2] + 1, opedata.length - index_list[2])
+      dict_data['ID'] = id
+      dict_list.push(dict_data)
+      id++
+    }
+    that.setData({
+      items: dict_list
+    })
+    console.log('items')
+    console.log(that.data.items)
+  },
+
   findall: function (a, x) {
     var results = []
     var len = a.length
@@ -105,6 +158,64 @@ Page({
       pos = pos + 1
     }
     return results
+  },
+
+  showIntroduction: function(e) {
+    var that = this
+    console.log(e.currentTarget.dataset.item.Introduction)
+    wx.showModal({
+      title: e.currentTarget.dataset.item.Name,
+      content: e.currentTarget.dataset.item.Introduction,
+      confirmText: '返回',
+      cancelText: '删除',
+      success: function(res) {
+        if(res.confirm) {
+          return
+        }
+        if(res.cancel) {
+          var name = e.currentTarget.dataset.item.Name
+          var image = e.currentTarget.dataset.item.ImageUrl
+          var author = e.currentTarget.dataset.item.AuthorName
+          var introduction = e.currentTarget.dataset.item.Introduction
+          var deleteitem = name + '$' + image + '$' + author + '$' + introduction
+          var opeList = that.data.shoucang_list
+          var index = opeList.indexOf(deleteitem)
+          opeList.splice(index, 1)
+          that.setData({
+            shoucang_list: opeList
+          })
+          var header = {}
+          var cookie = cookieUtil.getCookieFromStorage()
+          header.Cookie = cookie
+          wx.request({
+            url: app.globalData.serverUrl + '/api/v1.0/auth/user',
+            method: 'POST',
+            data: {
+              major: that.data.majorCache,
+              type: that.data.typeCache,
+              mission: that.data.missionCache,
+              collection: that.data.shoucang_list
+            },
+            header: header,
+            success(res) {
+              wx.showToast({
+                title: '保存成功',
+              })
+              that.onShow()
+            }
+          })
+        }
+      }
+    })
+  },
+
+  DateMinus: function (date1, date2) {
+    //date1:小日期   date2:大日期
+    var sdate = new Date(date1);
+    var now = new Date(date2);
+    var days = now.getTime() - sdate.getTime();
+    var day = parseInt(days / (1000 * 60 * 60 * 24));
+    return day;
   },
 
   bindMajorPickerChange: function (e) {
@@ -179,7 +290,8 @@ Page({
         data: {
           major: that.data.major,
           type: that.data.typeCache,
-          mission: that.data.missionCache
+          mission: that.data.missionCache,
+          collection: that.data.collectionCache
         },
         header: header,
         success(res) {
