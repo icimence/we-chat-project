@@ -64,7 +64,7 @@
 
 .missionnameview1 {
   height: 50rpx;
-  width: 300rpx;
+  width: 600rpx;
 }
 
 .missionnameview2 {

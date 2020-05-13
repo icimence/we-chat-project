@@ -285,3 +285,105 @@
   font-family: FangSong;
   font-weight: 600
 }
+
+.calendar {
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.jinjitime {
+  margin-left: -133rpx;
+  margin-top: 80rpx;
+  font-size: 20rpx;
+  font-weight: 900
+}
+
+.rili {
+  display: flex;
+  flex-direction: row;
+  margin-left: 100rpx;
+}
+
+.rilibar {
+  display: flex;
+  flex-direction: row
+}
+
+.jinjirenwubar {
+
+}
+
+.jinjirenwubar text {
+  font-size: 40rpx
+}
+
+.tishiicon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 50rpx;
+}
+
+.jinjirenwuinfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.biaoqian {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.jinjirenwubarInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 50rpx;
+}
+
+.jinjirenwunameInfo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+  margin-left: -50rpx;
+}
+
+.jinjirenwuname text {
+  font-size: 40rpx;
+  margin-left: 10rpx;
+}
+
+.chilun {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.jinjirenwutypeInfo {
+  display: flex;
+  flex-direction: row;
+  margin-top: 50rpx;
+}
+
+.jinjirenwutype text {
+  font-size: 40rpx;
+  margin-left: 10rpx;
+}
+
+.item {
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100wh;
+}
+
+.shoucangname {
+  width: 80wh;
+  background-color: #fad42cfa;
+  border-radius: 10rpx;
+  box-shadow:0px 2px 4px 2px #DDDDDD;
+}
+
+.shoucangnameText {
+  font-size: 50rpx;
+}

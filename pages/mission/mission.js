@@ -16,7 +16,8 @@ Page({
     mission: [],
     missionCache: [],
     typeCache: [],
-    majorCache: []
+    majorCache: [],
+    collectionCache: []
   },
 
   onLoad: function(options) {
@@ -34,7 +35,8 @@ Page({
           loadArray: res.data.data.type,
           typeCache: res.data.data.type,
           missionCache: res.data.data.mission,
-          majorCache: res.data.data.major
+          majorCache: res.data.data.major,
+          collectionCache: res.data.data.collection
         })
         var addArray = that.data.loadArray
         var resArr = that.data.typeArray
@@ -189,7 +191,8 @@ Page({
       data: {
         mission: that.data.mission,
         type: loadArr,
-        major: that.data.majorCache
+        major: that.data.majorCache,
+        collection: that.data.collectionCache
       },
       header: header,
       success(res) {

@@ -93,22 +93,64 @@
       </view>
       <!--任务不为空时显示内容-->
       <view class='jinjimission' hidden='{{!renwuHidden}}'>
-        <text>{{jinjirenwubar}}</text>
-        <text>{{jinjirenwuname}}</text>
-        <text>{{jinjirenwutype}}</text>
-        <text>{{jinjirenwutime}}</text>
+        <view class='rilibar'>
+          <view class='rili'>
+            <image src='/icons/日历.png' class='calendar'></image>
+            <text class='jinjitime'>{{jinjirenwutime}}</text>
+          </view>
+        </view>
+        <view class='jinjirenwuinfo'>
+          <view class='jinjirenwubarInfo'>
+            <view class='jinjirenwubarimage'>
+              <image src='/icons/标签.png' class='biaoqian'></image>
+            </view>
+            <view class='jinjirenwubar'>
+              <text>{{jinjirenwubar}}</text>
+            </view>
+          </view>
+          <view class='jinjirenwunameInfo'>
+            <view class='jinjirenwunameimage'>
+              <image src='/icons/提示.png' class='tishiicon'></image>
+            </view>
+            <view class='jinjirenwuname'>
+              <text>{{jinjirenwuname}}</text>
+            </view>
+          </view>
+          <view class='jinjirenwutypeInfo'>
+            <view class='jinjirenwutypeimage'>
+              <image src='/icons/齿轮.png' class='chilun'></image>
+            </view>
+            <view class='jinjirenwutype'>
+              <text>{{jinjirenwutype}}</text>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
     <!--我的收藏显示内容-->
     <view class = 'collection' hidden='{{hiddenCollection}}'>
       <!--收藏为空时显示内容-->
-      <view class = 'title'>
+      <view class = 'title' hidden='{{shoucangHidden}}'>
         <view>
           <image src = '/icons/emptyicon.png' class = 'empty'></image>
         </view>
         <view>
           <text class = 'titletext'>当前收藏夹为空，</text><navigator style = 'display: inline;' class = 'modifytext' hover-class = 'nav-hover' open-type="switchTab" url="/pages/recommend/recommend">点击浏览推荐内容</navigator>
         </view>
+      </view>
+      <!--收藏不为空时显示内容-->
+      <view class='shoucangneirong' hidden='{{!shoucangHidden}}'>
+        <scroll-view scroll-y="true" style="height: 300px">
+          <!-- 每个cell -->
+          <view class='item' wx:for="{{items}}" wx:key="{{item.ID}}" data-item= "{{item}}" data-id="{{item.ID}}" bindtap='showIntroduction'>
+            <view class='collectiontitle'>
+              <!--收藏名称-->
+              <view class='shoucangname'>
+                <button class='shoucangnameText'>{{item.Name}}</button>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
       </view>
     </view>
   </view>
