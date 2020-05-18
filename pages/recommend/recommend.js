@@ -7,12 +7,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        isHidenLoadMore: true,
+        isHidenLoadMore1: true,
+        isHidenLoadMore0: true,
         currentTab: 0,
         isHidenInfo: true,
         Tag: "",
         author: "作者",
-        isHidenIntro: true,
+        isHidenIntro1: true,
+        isHidenIntro0: true,
         info: "加载失败了！刷新一下试试",
         learninginfo: "目前屁都没有",
         bookList: [],
@@ -34,8 +36,10 @@ Page({
         var that = this
         wx.showNavigationBarLoading()
         that.setData({
-            isHidenLoadMore: false
+            isHidenLoadMore0: false,
+            isHidenLoadMore1: false
         })
+        //这里是关于书本的请求
         const wxreq = wx.request({
             url: app.globalData.serverUrl + app.globalData.apiVersion + '/rec/recommendBook',
             data: {
@@ -45,10 +49,10 @@ Page({
                 console.log(e.data)
                 if (e.statusCode == 200) {
                     that.setData({
-                        isHidenLoadMore: true,
+                        isHidenLoadMore0: true, //加载框隐去
                         bookList: e.data,
                         isHidenInfo: true,
-                        isHidenIntro: false
+                        isHidenIntro0: false
                     })
                     wx.hideNavigationBarLoading()
                 } else {
@@ -62,6 +66,35 @@ Page({
                 this.setData({
                     isHidenInfo: false,
                     isHidenLoadMore: true
+                })
+                wx.hideNavigationBarLoading()
+            }
+        })
+        const wxreq2 = wx.request({
+            url: app.globalData.serverUrl + app.globalData.apiVersion + '/rec/recommendComp',
+            success: function (e) {
+                console.log(e.statusCode)
+                if (e.statusCode == 200) {
+                    that.setData({
+                        isHidenLoadMore1: true,
+                        compList: e.data,
+                        isHidenInfo: true,
+                        isHidenIntro1: false,
+                        compImg: "http://www.52jingsai.com/" + e.data.comp_img
+                    })
+                    wx.hideNavigationBarLoading()
+                    wx.stopPullDownRefresh()
+                } else {
+                    that.setData({
+                        isHidenInfo: false,
+                        isHidenLoadMore1: true
+                    })
+                }
+            },
+            fail: function (e) {
+                that.setData({
+                    isHidenInfo: false,
+                    isHidenLoadMore1: true
                 })
                 wx.hideNavigationBarLoading()
             }
@@ -107,12 +140,12 @@ Page({
     },
     onPullDownRefresh: function () {
         var that = this
-        that.setData({
-            isHidenIntro: true,
-            isHidenLoadMore: false
-        })
         wx.showNavigationBarLoading()
         if (this.data.currentTab == 0) {
+            that.setData({
+                isHidenIntro0: true,
+                isHidenLoadMore0: false,
+            })
             const wxreq = wx.request({
                 url: app.globalData.serverUrl + app.globalData.apiVersion + '/rec/recommendBook',
                 data: {
@@ -124,37 +157,40 @@ Page({
                         that.setData({
                             bookList: e.data,
                             isHidenInfo: true,
-                            isHidenLoadMore: true,
-                            isHidenIntro: false
+                            isHidenLoadMore0: true,
+                            isHidenIntro0: false
                         })
                         wx.hideNavigationBarLoading()
                     } else {
                         that.setData({
                             isHidenInfo: false,
-                            isHidenLoadMore: true
+                            isHidenLoadMore0: true
                         })
                     }
                 },
                 fail: function (e) {
                     that.setData({
                         isHidenInfo: false,
-                        isHidenLoadMore: true
+                        isHidenLoadMore0: true
                     })
                     wx.hideNavigationBarLoading()
                 },
             })
-        }
-        else if (this.data.currentTab==1){
+        } else if (this.data.currentTab == 1) {
+            that.setData({
+                isHidenIntro1: true,
+                isHidenLoadMore1: false,
+            })
             const wxreq = wx.request({
                 url: app.globalData.serverUrl + app.globalData.apiVersion + '/rec/recommendComp',
                 success: function (e) {
                     console.log(e.statusCode)
                     if (e.statusCode == 200) {
                         that.setData({
-                            isHidenLoadMore: true,
+                            isHidenLoadMore1: true,
                             compList: e.data,
                             isHidenInfo: true,
-                            isHidenIntro: false,
+                            isHidenIntro1: false,
                             compImg: "http://www.52jingsai.com/" + e.data.comp_img
                         })
                         wx.hideNavigationBarLoading()
@@ -162,14 +198,14 @@ Page({
                     } else {
                         that.setData({
                             isHidenInfo: false,
-                            isHidenLoadMore: true
+                            isHidenLoadMore1: true
                         })
                     }
                 },
                 fail: function (e) {
                     that.setData({
                         isHidenInfo: false,
-                        isHidenLoadMore: true
+                        isHidenLoadMore1: true
                     })
                     wx.hideNavigationBarLoading()
                 }
@@ -189,41 +225,6 @@ Page({
         if (this.data.currentTab === e.target.dataset.current) {
             return false;
         } else {
-            if (e.target.dataset.current == 1) {
-                wx.showNavigationBarLoading()
-                that.setData({
-                    isHidenLoadMore: false
-                })
-                const wxreq = wx.request({
-                    url: app.globalData.serverUrl + app.globalData.apiVersion + '/rec/recommendComp',
-                    success: function (e) {
-                        console.log(e.statusCode)
-                        if (e.statusCode == 200) {
-                            that.setData({
-                                isHidenLoadMore: true,
-                                compList: e.data,
-                                isHidenInfo: true,
-                                isHidenIntro: false,
-                                compImg: "http://www.52jingsai.com/" + e.data.comp_img
-                            })
-                            wx.hideNavigationBarLoading()
-                            wx.stopPullDownRefresh()
-                        } else {
-                            that.setData({
-                                isHidenInfo: false,
-                                isHidenLoadMore: true
-                            })
-                        }
-                    },
-                    fail: function (e) {
-                        that.setData({
-                            isHidenInfo: false,
-                            isHidenLoadMore: true
-                        })
-                        wx.hideNavigationBarLoading()
-                    }
-                })
-            }
             that.setData({
                 currentTab: e.target.dataset.current
             })

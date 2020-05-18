@@ -9,7 +9,7 @@
 .swiper-tab-list{  
   font-size: 30rpx;  
   display: inline-block;  
-  width: 33.3%;  
+  width: 50%;  
 } 
 .on{
   border-bottom: 2px solid rgb(58, 186, 248);

@@ -2,7 +2,6 @@
 <view class="swiper-tab">
 	<view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推荐图书</view>
 	<view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">推荐竞赛</view>
-	<view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">学习资料</view>
 </view>
 
 <view class="tab-content">
@@ -10,16 +9,16 @@
 	<view class="tab-list-content {{currentTab==0?'active':''}}">
 		<view class="book">
 			<view class="bookimg">
-				<image src="{{bookList.book_img}}" mode="aspectFit" hidden="{{isHidenIntro}}"></image>
+				<image src="{{bookList.book_img}}" mode="aspectFit" hidden="{{isHidenIntro0}}"></image>
 			</view>
-			<view class="bName" hidden="{{isHidenIntro}}">书名</view>
-			<view class="bNameInfo" hidden="{{isHidenIntro}}">{{bookList.book_name}}</view>
-			<view class="intro" hidden="{{isHidenIntro}}">{{author}}</view>
-			<view class="author" hidden="{{isHidenIntro}}">{{bookList.author_name}}</view>
+			<view class="bName" hidden="{{isHidenIntro0}}">书名</view>
+			<view class="bNameInfo" hidden="{{isHidenIntro0}}">{{bookList.book_name}}</view>
+			<view class="intro" hidden="{{isHidenIntro0}}">{{author}}</view>
+			<view class="author" hidden="{{isHidenIntro0}}">{{bookList.author_name}}</view>
 		</view>
 		<view class="bookInfo">
-			<view hidden="{{isHidenIntro}}" class="introduction">图书简介</view>
-			<view hidden="{{isHidenIntro}}" class="introMessage">{{bookList.introduction}}</view>
+			<view hidden="{{isHidenIntro0}}" class="introduction">图书简介</view>
+			<view hidden="{{isHidenIntro0}}" class="introMessage">{{bookList.introduction}}</view>
 		</view>
 		<view class="button">
 			<button bindtap="gotoBookLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
@@ -29,7 +28,7 @@
       </picker>
 			<button bindtap="addBookFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
 		</view>
-		<view hidden="{{isHidenLoadMore}}">
+		<view hidden="{{isHidenLoadMore0}}">
 			<loading type="circle">加载中</loading>
 		</view>
 		<view hidden="{{isHidenInfo}}">
@@ -39,9 +38,9 @@
 	<!-- 推荐竞赛 -->
 	<view class="tab-list-content {{currentTab==1?'active':''}}">
 		<view class="comp">
-			<image src="{{compImg}}" hidden="{{isHidenIntro}}" class="compImg"></image>
-			<text class="compName" hidden="{{isHidenIntro}}">{{compList.comp_name}}</text>
-			<view class="compIntro" hidden="{{isHidenIntro}}">{{compList.introduction}}</view>
+			<image src="{{compImg}}" hidden="{{isHidenIntro1}}" class="compImg"></image>
+			<text class="compName" hidden="{{isHidenIntro1}}">{{compList.comp_name}}</text>
+			<view class="compIntro" hidden="{{isHidenIntro1}}">{{compList.introduction}}</view>
 			<view class="button">
 				<button bindtap="gotoCompLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
         <!---添加时间选择器--->
@@ -51,12 +50,8 @@
 				<button bindtap="addCompFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
 			</view>
 		</view>
-		<view hidden="{{isHidenLoadMore}}">
+		<view hidden="{{isHidenLoadMore1}}">
 			<loading type="circle">加载中</loading>
 		</view>
-	</view>
-	<!-- 学习资料 -->
-	<view class="tab-list-content {{currentTab==2?'active':''}}">
-		<text>{{learninginfo}}</text>
 	</view>
 </view>

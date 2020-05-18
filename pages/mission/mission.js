@@ -11,7 +11,7 @@ Page({
     newtype: '点击选择任务类别',
     missiontypeHidden: false,
     newname: '请选择',
-    newdate: '请选择完成日期',
+    newdate: '请选择\n完成日期',
     newmajor: '点击选择相关专业',
     mission: [],
     missionCache: [],

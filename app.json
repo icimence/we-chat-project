@@ -4,7 +4,9 @@
     "pages/my/my",
     "pages/ing/ing",
     "pages/recommend/recommend",
-    "pages/mission/mission"
+    "pages/my/my",
+    "pages/mission/mission",
+    "pages/ing/ing"
   ],
   "tabBar": {
     "selectedColor": "#fad73f",
