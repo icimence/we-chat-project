@@ -31,13 +31,27 @@ Page({
   onShow: function (options) {
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
-    header.Cookie = cookie
+    console.log('显示cookie')
+    console.log(cookie)
+    console.log('显示cookie')
+    //header.Cookie = cookie
+    var header = {
+      'content-type': 'application/json; charset=utf-8',
+      'cookie': wx.getStorageSync("sessionid")
+    };
     var that = this
+    var openid = app.globalData.openId
     wx.request({
       url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
       method: 'GET',
       header: header,
+      data: {
+        'openid': openid
+      },
       success: function(res){
+        console.log('检查远端数据库')
+        console.log(res)
+        console.log('检查远端数据库')
         that.setData({
           major: res.data.data.major,
           renwu_list: res.data.data.mission,
@@ -194,7 +208,8 @@ Page({
               major: that.data.majorCache,
               type: that.data.typeCache,
               mission: that.data.missionCache,
-              collection: that.data.shoucang_list
+              collection: that.data.shoucang_list,
+              openid: app.globalData.openId
             },
             header: header,
             success(res) {
@@ -291,7 +306,8 @@ Page({
           major: that.data.major,
           type: that.data.typeCache,
           mission: that.data.missionCache,
-          collection: that.data.collectionCache
+          collection: that.data.collectionCache,
+          openid: app.globalData.openId
         },
         header: header,
         success(res) {

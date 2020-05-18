@@ -27,17 +27,29 @@ Page({
             'content-type': 'application/json' // 默认值
           },
           success(res) {
+            console.log('验证登录')
+            console.log(res)
+            console.log('验证登录')
             wx.showToast({
               title: '授权成功',
             })
             // 保存cookie
             var cookie = cookieUtil.getSessionIDFromResponse(res)
+            wx.setStorageSync('sessionid', res.header['Set-Cookie']);
             cookieUtil.setCookieToStorage(cookie)
+            app.globalData.code = code
+            console.log('显示login后的cookie')
+            console.log(cookie)
+            console.log('显示login后的cookie')
             that.setData({
               isLogin: true,
               userInfo: app.globalData.userInfo,
               hasUserInfo: true
             })
+            app.globalData.openId = res.data.data
+            console.log('我们得到这样的openid')
+            console.log(app.globalData.openId)
+            console.log('我们得到这样的openid')
             app.setAuthStatus(true)
             wx.switchTab({
               url: '/pages/my/my',

@@ -58,8 +58,11 @@ App({
     userInfo: null,
     inList:[],
     appId: 'wxb872058495dd7751',
-    serverUrl: 'http://127.0.0.1:8000',
+    serverUrl: 'https://nandodu.cn',
+    //serverUrl: 'http://127.0.0.1:8000',
     apiVersion: '/api/v1.0',
+    code: '',
+    openId: '',
     auth: {
       isAuthorized: false
     }

@@ -139,19 +139,23 @@
         </view>
       </view>
       <!--收藏不为空时显示内容-->
-      <view class='shoucangneirong' hidden='{{!shoucangHidden}}'>
-        <scroll-view scroll-y="true" style="height: 300px">
+      <scroll-view scroll-x="true" style=" white-space: nowrap; display:inline-block; height: 600rpx;" >
+        <view class='shoucangneirong' hidden='{{!shoucangHidden}}'>
           <!-- 每个cell -->
           <view class='item' wx:for="{{items}}" wx:key="{{item.ID}}" data-item= "{{item}}" data-id="{{item.ID}}" bindtap='showIntroduction'>
             <view class='collectiontitle'>
+              <!--收藏图片-->
+              <view class='shoucangfengmian'>
+                <image src='{{item.ImageUrl}}'></image>
+              </view>
               <!--收藏名称-->
               <view class='shoucangname'>
-                <button class='shoucangnameText'>{{item.Name}}</button>
+                <text class='shoucangnameText'>{{item.Name}}</text>
               </view>
             </view>
           </view>
-        </scroll-view>
-      </view>
+        </view>
+      </scroll-view>
     </view>
   </view>
 </view>

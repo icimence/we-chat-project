@@ -369,21 +369,37 @@
   margin-left: 10rpx;
 }
 
-.item {
-  height: 200rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100wh;
-}
-
-.shoucangname {
-  width: 80wh;
-  background-color: #fad42cfa;
-  border-radius: 10rpx;
-  box-shadow:0px 2px 4px 2px #DDDDDD;
-}
-
 .shoucangnameText {
-  font-size: 50rpx;
+  display: block;
+  width:144px;
+  height: 60rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+
+.shoucangfengmian image {
+  height: 300rpx;
+  width: 300rpx;
+}
+
+.scroll-view_H{
+  width: 100%;
+  white-space: nowrap; 
+}
+.scroll-view-item_H{
+  width: 200px;
+  height: 100px;
+  display: inline-block;
+}
+
+.shoucangneirong {
+  display: flex;
+  flex-direction: row;
+  margin-top: 150rpx;
+}
+
+.item {
+  margin-left: 50rpx;
 }

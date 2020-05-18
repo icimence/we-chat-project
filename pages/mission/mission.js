@@ -25,10 +25,14 @@ Page({
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
     var that = this
+    var openid = app.globalData.openId
     wx.request({
       url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
       method: 'GET',
       header: header,
+      data: {
+        'openid': openid
+      },
       success: function (res) {
         that.setData({
           mission: res.data.data.mission,
@@ -192,7 +196,8 @@ Page({
         mission: that.data.mission,
         type: loadArr,
         major: that.data.majorCache,
-        collection: that.data.collectionCache
+        collection: that.data.collectionCache,
+        openid: app.globalData.openId
       },
       header: header,
       success(res) {
