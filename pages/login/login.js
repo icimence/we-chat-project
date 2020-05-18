@@ -12,7 +12,7 @@ Page({
         console.log(res)
         var code = res.code
         var appId = app.globalData.appId
-        var nickname = e.detail.userInfo.nickName
+        var nickname = that.stringToUnicode(e.detail.userInfo.nickName)
         console.log(nickname)
         // 请求后台
         wx.request({
@@ -67,5 +67,9 @@ Page({
       wx.hideNavigationBarLoading() //完成停止加载
       wx.stopPullDownRefresh() //停止下拉刷新
     }, 1500);
+  },
+
+  stringToUnicode: function(str) {
+    return escape(str).replace(/%u/gi, '\\u');//如果不替换,输出格式为:%uxxxx%uxxxx
   }
 })
