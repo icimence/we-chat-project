@@ -148,3 +148,25 @@
   margin-left: 75rpx;
   width: 150rpx;
 }
+
+.lzy-loading{
+  margin-right: 20rpx;
+  float: left;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 1px solid #f0f0f0;
+  border-left: 1px solid #6190E8;
+  animation: load 1s linear infinite;
+  -webkit-animation: load 1s linear infinite;
+}
+@-webkit-keyframes load
+{
+  from{-webkit-transform:rotate(0deg);}
+  to{-webkit-transform:rotate(360deg);}
+}
+@keyframes load
+{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}

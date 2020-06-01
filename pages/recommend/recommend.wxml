@@ -6,6 +6,10 @@
 
 <view class="tab-content">
 	<!-- 推荐图书 -->
+  <scroll-view scroll-y style="height:90vh" 
+  bindtouchstart='touchStart'
+  bindtouchend='touchEnd'
+  bindtouchmove='touchMove'>
 	<view class="tab-list-content {{currentTab==0?'active':''}}">
 		<view class="book">
 			<view class="bookimg">
@@ -54,4 +58,5 @@
 			<loading type="circle">加载中</loading>
 		</view>
 	</view>
+  </scroll-view>
 </view>
