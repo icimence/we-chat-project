@@ -1,17 +1,19 @@
 <view class='ingpage'>
 	<!--顶部添加按钮以及帮助说明-->
   <view class='topInfo'>
-		<navigator open-type="navigate" url="/pages/mission/mission">
-			<image src='/icons/add.png' class='topImage1'></image>
-		</navigator>
-		<image src='/icons/ask.png' class='topImage2'></image>
+		<!--view class='missionstyle'>
+      <image src='/icons/任务模式.png' class='topImage1'></image>
+    </view>
+    <view class='playstyle'>
+		  <image src='/icons/聚会模式.png' class='topImage2'></image>
+    </view-->
 	</view>
   <!--分类条及分类内容-->
 	<block wx:for-items="{{missionInfoData}}">
 		<!--分类条-->
-    <view class="bar" bindtap='toggleBtn' id="{{item.id}}">
+    <view class="bar" bindtap='toggleBtn' id="{{item.id}}" hover-class="btn-hover">
 			<!--分类条三角指示符-->
-      <image class='barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
+      <!--image class='barimage {{item.id > 0?"":"hidden"}}' src='{{item.imgurl}}'></image>
 			<image class='barimage {{item.id > 0?"hidden":""}}' src='{{item.imgurl1}}'></image>
 			<!--分类条文字信息-->
       <view class='barinfo'>
@@ -26,8 +28,8 @@
 			</view>
 		</view>
     <!--分类内容-->
-		<view wx:for-items="{{item.content}}" wx:for-item="content" bind:longpress="deleteItem" data-barname='{{item.barname}}' data-name='{{content.name}}' data-major='{{content.type}}' data-time='{{content.day}}'>
-			<view class="mission {{item.id > 0?'hidden':''}}">
+		<view wx:for-items="{{item.content}}" wx:for-item="content" bind:longpress="deleteItem" data-barname='{{item.barname}}' data-name='{{content.name}}' data-major='{{content.type}}' data-time='{{content.day}}' bindtap='showLongName'>
+			<view class="mission {{item.id != currentId?'hidden':''}}" hover-class="btn-hover">
 				<view class='timeimageview'>
 					<image class='timeimage' src='/icons/resttime.png'></image>
 				</view>
@@ -49,8 +51,19 @@
 			</view>
 		</view>
 	</block>
+  <navigator open-type="navigate" url="/pages/mission/mission" hover-class="none" class='moremissionsnav'>
+    <view class='moremissions' hidden='{{moremissions}}'>
+      <image src='/images/moremissions.png'></image>
+    </view>
+  </navigator>
+  <view class='moremissions' hidden='{{completemissions}}'>
+    <image src='/images/completemissions.png'></image>
+  </view>
+	<view class='moremissions' hidden='{{emptyImage}}'>
+    <image src='/images/emptyImage.png'></image>
+  </view>
   <!--任务为空时页面-->
-  <view class='missionEmpty' hidden='{{missionEmpty}}'>
+  <!--view class='missionEmpty' hidden='{{missionEmpty}}'>
     <view>
       <image src='/images/star.png' class='star'></image>
     </view>
@@ -63,5 +76,5 @@
     <view class='emptytext'>
       当前暂无任务，点击左上角“+”添加任务吧！
     </view>
-  </view>
+  </view-->
 </view>

@@ -7,15 +7,25 @@
   <view class = 'content'> 
     <!--用户logo及用户名称信息栏-->
     <view class = 'topinfo'>
-      <view class = 'logo'>
+      <view class = 'logo' hidden='{{!allow}}'>
         <open-data type="userAvatarUrl" mode = 'cover' ></open-data>
       </view>
-      <view class = 'username'>
+      <view class = 'username' hidden='{{!allow}}'>
         <open-data type="userNickName" lang="zh_CN" ></open-data>
       </view>
+      <view class = 'logo' hidden='{{allow}}'>
+        <image src='/images/头像.png' class='emptyLogo'></image>
+      </view>
+      <button class="btn-button" hover-class="btn-hover" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="authorize" hidden='{{allow}}'>
+        <text class='kaiqishouquan'>开启授权，解锁全部功能</text>
+      </button>
       <!--反馈按钮-->
       <view class = 'feedbackview'>
-        <button class='feedback' open-type="feedback" style="background-image:url('https://nandodu-blog.oss-cn-shanghai.aliyuncs.com/feedback.png'); background-size: 100% 100%; plain='true'; background-color: white;"></button>
+        <!--button class='feedback' open-type="feedback" style="background-image:src('https://nandodu-blog.oss-cn-shanghai.aliyuncs.com/feedback.png'); background-size: 100% 100%; plain='true'; background-color: white;">
+        </button-->
+        <button open-type='feedback' class='feedback' hover-class="btn-hover">
+          <image src='/icons/反馈信息.png'></image>
+        </button>
       </view>
     </view>
     <!--三个按钮所在一栏-->
@@ -61,10 +71,11 @@
       </view>
       <!--专业不为空时显示内容-->
       <view class='zhuanyeneirong'>
-        <view class='zhuanyexiang'>
+        <view class='zhuanyexiang' hidden = '{{!hiddenZhuanye}}'>
           <view wx:for="{{major}}" data-index='{{index}}' bind:longpress="deleteItem" class = 'zhuanyeList' hidden = '{{!hiddenZhuanye}}'>
-            <button class="weui-cell__bd"><text>{{item}}</text></button>
+            <button class="weui-cell__bd" hover-class="btn-hover" bindtap='handleDefaultClick'><text>{{item}}</text></button>
           </view>
+          <modal bind:handleConfirm="modalConfirmCallBack" modal-hidden="{{modal.hidden}}" modal-title="{{modal.title}}" modal-msg="{{modal.msg}}" modal-type="{{modal.type}}" data-params="{{modal.params}}"></modal>
         </view>
         <view hidden = '{{!hiddenZhuanye}}' class='anniu'>
           <view>
@@ -74,7 +85,12 @@
           </view>
         </view>
         <view hidden = '{{!hiddenZhuanye}}' class='xiaotishi'>
-          <text>小提示：长按专业名称可删除</text>
+          <view>
+            <image src='/icons/喇叭.png' class='tishi' bindtap='practicetwister'></image>
+          </view>
+          <view>
+            <text>小提示：长按专业名称可删除</text>
+          </view>
         </view>
       </view>
     </view>
@@ -93,37 +109,25 @@
       </view>
       <!--任务不为空时显示内容-->
       <view class='jinjimission' hidden='{{!renwuHidden}}'>
-        <view class='rilibar'>
-          <view class='rili'>
-            <image src='/icons/日历.png' class='calendar'></image>
-            <text class='jinjitime'>{{jinjirenwutime}}</text>
+        <view class='jinjirenwuinfo' hover-class='btn-hover-jinji'>
+          <view class='riqiinfo'>
+            <text>日期：{{jinjirenwutime}}</text>
+          </view>
+          <view class='fenleiinfo'>
+            <text>分类：{{jinjirenwubar}}</text>
+          </view>
+          <view class='shixianginfo'>
+            <text>事项：{{jinjirenwuname}}</text>
+          </view>
+          <view class='zhuanyeinfo'>
+            <text>专业：{{jinjirenwutype}}</text>
           </view>
         </view>
-        <view class='jinjirenwuinfo'>
-          <view class='jinjirenwubarInfo'>
-            <view class='jinjirenwubarimage'>
-              <image src='/icons/标签.png' class='biaoqian'></image>
-            </view>
-            <view class='jinjirenwubar'>
-              <text>{{jinjirenwubar}}</text>
-            </view>
-          </view>
-          <view class='jinjirenwunameInfo'>
-            <view class='jinjirenwunameimage'>
-              <image src='/icons/提示.png' class='tishiicon'></image>
-            </view>
-            <view class='jinjirenwuname'>
-              <text>{{jinjirenwuname}}</text>
-            </view>
-          </view>
-          <view class='jinjirenwutypeInfo'>
-            <view class='jinjirenwutypeimage'>
-              <image src='/icons/齿轮.png' class='chilun'></image>
-            </view>
-            <view class='jinjirenwutype'>
-              <text>{{jinjirenwutype}}</text>
-            </view>
-          </view>
+        <view class='pikaqiu' hidden='{{pikaqiu}}' bindtap='changeImage'>
+          <image src='/images/renwutixing.png'></image>
+        </view>
+        <view class='pikaqiu' hidden='{{!pikaqiu}}' bindtap='changeImage'>
+          <image src='/images/pikaqiu2.png'></image>
         </view>
       </view>
     </view>
@@ -139,23 +143,57 @@
         </view>
       </view>
       <!--收藏不为空时显示内容-->
-      <scroll-view scroll-x="true" style=" white-space: nowrap; display:inline-block; height: 600rpx;" >
+      <!--scroll-view scroll-x="true" style=" white-space: nowrap; display:inline-block; height: 600rpx;" >
         <view class='shoucangneirong' hidden='{{!shoucangHidden}}'>
           <!-- 每个cell -->
-          <view class='item' wx:for="{{items}}" wx:key="{{item.ID}}" data-item= "{{item}}" data-id="{{item.ID}}" bindtap='showIntroduction'>
+          <!--view class='item' wx:for="{{items}}" wx:key="{{item.ID}}" data-item= "{{item}}" data-id="{{item.ID}}" bindtap='showIntroduction'>
             <view class='collectiontitle'>
               <!--收藏图片-->
-              <view class='shoucangfengmian'>
+              <!--view class='shoucangfengmian'>
                 <image src='{{item.ImageUrl}}'></image>
               </view>
               <!--收藏名称-->
-              <view class='shoucangname'>
+              <!--view class='shoucangname'>
                 <text class='shoucangnameText'>{{item.Name}}</text>
               </view>
             </view>
           </view>
         </view>
-      </scroll-view>
+      </scroll-view-->
+      <view class="swiper-container">
+        <!-- book swiper -->
+	      <block>
+		      <swiper 
+			      indicator-dots="{{indicatorDots}}" 
+			      autoplay="{{autoplay}}" 
+			      interval="{{interval}}" 
+			      duration="{{duration}}" 
+			      circular="{{circular}}" 
+			      class="swiper" 
+			      previous-margin="{{sideMargin}}" 
+			      next-margin="{{sideMargin}}"
+		      >
+	 		      <block wx:for="{{items}}" wx:key="{{item.ID}}">
+	 			      <swiper-item class="swiper-item">
+					      <view 
+						      class="book-container bg-white" 
+						      hover-class="book-container-hover" 
+						      catchtap="goDetail" 
+						      data-id="{{item.ID}}"
+                  data-item= "{{item}}" 
+					      >
+                  <view class="book-image"> 
+	 						      <image src='{{item.ImageUrl}}' mode="scaleToFill"></image>
+	 					      </view>
+	 					      <view class="book-info">
+	 						      <text class="book-name">{{item.Name}}</text>
+						      </view>
+	 				      </view>
+	 			      </swiper-item>
+			      </block>
+		      </swiper>
+	      </block>
+      </view>
     </view>
   </view>
 </view>

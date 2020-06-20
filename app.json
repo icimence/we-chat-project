@@ -3,8 +3,8 @@
     "pages/login/login",
     "pages/my/my",
     "pages/ing/ing",
-    "pages/recommend/recommend",
-    "pages/mission/mission"
+    "pages/mission/mission",
+    "pages/recommend/recommend"
   ],
   "tabBar": {
     "selectedColor": "#fad73f",

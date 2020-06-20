@@ -1,4 +1,4 @@
-<view wx:if="canIUse">
+<!--view wx:if="canIUse">
   <view class="center">
   <view>
     <image src="/images/logo.png" class="logo"></image>
@@ -8,4 +8,25 @@
   </view>
 </view>
 
-<view wx:else>请升级微信版本</view>
+<view wx:else>请升级微信版本</view-->
+<!--start.wxml-->
+<view class="container">
+  <view class="remind-box" wx:if="{{remind}}">
+    <image class="remind-img" src="/images/more/loading.gif"></image>
+  </view>
+  <block wx:else>
+    <image class="title" src="/images/more/title8.png"></image>
+    <view class="content">
+      <view class="hd" style="transform:rotateZ({{angle}}deg);">
+        <image class="logo" src="/images/logo.png"></image>
+        <image class="wave" src="/images/more/wave.png" mode="aspectFill"></image>
+        <image class="wave wave-bg" src="/images/more/wave.png" mode="aspectFill"></image>
+      </view>
+      <view class="bd">
+         <image class="smalltitle" src="/images/more/confirm-word1.png"></image>
+         <!--button class="button" hover-class="btn-hover" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="authorize" bindtap="showLoading">授权登录</button-->
+         <button class='button' hover-class='btn-hover' bindtap='open'>开启我的研学之旅</button>
+      </view>
+    </view>
+  </block>
+</view>

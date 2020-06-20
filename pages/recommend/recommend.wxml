@@ -10,53 +10,98 @@
   bindtouchstart='touchStart'
   bindtouchend='touchEnd'
   bindtouchmove='touchMove'>
-	<view class="tab-list-content {{currentTab==0?'active':''}}">
-		<view class="book">
-			<view class="bookimg">
-				<image src="{{bookList.book_img}}" mode="aspectFit" hidden="{{isHidenIntro0}}"></image>
-			</view>
-			<view class="bName" hidden="{{isHidenIntro0}}">书名</view>
-			<view class="bNameInfo" hidden="{{isHidenIntro0}}">{{bookList.book_name}}</view>
-			<view class="intro" hidden="{{isHidenIntro0}}">{{author}}</view>
-			<view class="author" hidden="{{isHidenIntro0}}">{{bookList.author_name}}</view>
-		</view>
-		<view class="bookInfo">
-			<view hidden="{{isHidenIntro0}}" class="introduction">图书简介</view>
-			<view hidden="{{isHidenIntro0}}" class="introMessage">{{bookList.introduction}}</view>
-		</view>
-		<view class="button">
-			<button bindtap="gotoBookLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
-			<!---添加时间选择器--->
-      <picker mode="date" value="{{date}}" start='{{nowtime}}' end="2120-05-04" bindchange="bindDateChangeBook">
-        <button type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
-      </picker>
-			<button bindtap="addBookFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
-		</view>
-		<view hidden="{{isHidenLoadMore0}}">
-			<loading type="circle">加载中</loading>
-		</view>
-		<view hidden="{{isHidenInfo}}">
-			<text>{{info}}</text>
-		</view>
-	</view>
-	<!-- 推荐竞赛 -->
-	<view class="tab-list-content {{currentTab==1?'active':''}}">
-		<view class="comp">
-			<image src="{{compImg}}" hidden="{{isHidenIntro1}}" class="compImg"></image>
-			<text class="compName" hidden="{{isHidenIntro1}}">{{compList.comp_name}}</text>
-			<view class="compIntro" hidden="{{isHidenIntro1}}">{{compList.introduction}}</view>
-			<view class="button">
-				<button bindtap="gotoCompLink" type="primary" class="leftButton" size="mini" hidden="{{isHidenIntro}}">查看详情</button>
-        <!---添加时间选择器--->
-        <picker mode="date" value="{{date}}" start='{{nowtime}}' end="2120-05-04" bindchange="bindDateChangeComp"> 
-				  <button type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到任务</button>
+	  <view class="tab-list-content {{currentTab==0?'active':''}}">
+		  <view class="book">
+			  <view class='imgAndAuthor'>
+          <view class="bookimg">
+				    <image src="{{bookList.book_img}}" mode="aspectFit" hidden="{{isHidenIntro0}}"></image>
+			    </view>
+          <view class='authorInfo'>
+			      <view class="intro" hidden="{{isHidenIntro0}}">作者</view>
+			      <view class="author" hidden="{{isHidenIntro0}}">
+              <text space='ensp'>    {{bookList.author_name}}</text>
+            </view>
+          </view>
+        </view>
+		  </view>
+      <view class="bName" hidden="{{isHidenIntro0}}">书名</view>
+			    <view class="bNameInfo" hidden="{{isHidenIntro0}}">
+            <text space='ensp'>    {{bookList.book_name}}</text>
+          </view>
+		  <view class="bookInfo">
+			  <view hidden="{{isHidenIntro0}}" class="introduction">图书简介</view>
+			  <view hidden="{{isHidenIntro0}}" class="introMessage">
+          <text space='ensp'>    {{bookList.introduction}}</text>
+        </view>
+		  </view>
+		  <view class="button">
+			  <button bindtap="gotoBookLink" class="leftButton" hidden="{{isHidenIntro}}" hover-class="btn-hover">
+          <image src='/icons/链接网址.png'></image>
+          <view>获取源地址</view>
+        </button>
+			  <!---添加时间选择器--->
+        <picker mode="date" value="{{date}}" start='{{nowtime}}' end="2120-05-04" bindchange="bindDateChangeBook">
+          <button class="middleButton" hidden="{{isHidenIntro}}" hover-class="btn-hover">
+            <image src='/icons/任务.png'></image>
+            <view>添加到任务</view>
+          </button>
         </picker>
-				<button bindtap="addCompFavour" type="primary" class="defaultButton" size="mini" hidden="{{isHidenIntro}}">添加到收藏</button>
-			</view>
-		</view>
-		<view hidden="{{isHidenLoadMore1}}">
-			<loading type="circle">加载中</loading>
-		</view>
-	</view>
+			  <button bindtap="addBookFavour" class="rightButton" hidden="{{isHidenIntro}}" hover-class="btn-hover">
+          <image src='/icons/收藏.png'></image>
+          <view>添加到收藏</view>
+        </button>
+		  </view>
+		  <view hidden="{{isHidenLoadMore0}}">
+			  <view id='loading_mask'>
+          <view id='loading_box'>
+            <image class="remind-img" src="/images/more/loading.gif"></image>
+            <text id='loading_txt'>努力加载中...</text>
+          </view>
+        </view>
+		  </view>
+		  <view hidden="{{isHidenInfo}}" class='missPage'>
+			  <image src='/images/大哭.png' class='cry'></image>
+        <text>推荐页面走丢了，请再刷新一次</text>
+		  </view>
+	  </view>
+	  <!-- 推荐竞赛 -->
+	  <view class="tab-list-content {{currentTab==1?'active':''}}">
+		  <view class="comp">
+			  <view class='toolView'>
+          <image src="{{compImg}}" hidden="{{isHidenIntro1}}" class="compImg"></image>
+        </view>
+        <view class="compName">
+			    <text hidden="{{isHidenIntro1}}">{{compList.comp_name}}</text>
+        </view>
+			  <view class="compIntro" hidden="{{isHidenIntro1}}">
+          <text space="ensp">    {{compList.introduction}}</text>
+        </view>
+			  <view class="button">
+				  <button bindtap="gotoCompLink" class="leftButton" hidden="{{isHidenIntro}}">
+            <image src='/icons/链接网址.png'></image>
+            <view>获取源地址</view>
+          </button>
+          <!---添加时间选择器--->
+          <picker mode="date" value="{{date}}" start='{{nowtime}}' end="2120-05-04" bindchange="bindDateChangeComp"> 
+				    <button class="middleButton" hidden="{{isHidenIntro}}">
+              <image src='/icons/任务.png'></image>
+              <view>添加到任务</view>
+            </button>
+          </picker>
+				  <button bindtap="addCompFavour" class="rightButton" hidden="{{isHidenIntro}}">
+            <image src='/icons/收藏.png'></image>
+            <view>添加到收藏</view>
+          </button>
+			  </view>
+		  </view>
+		  <view hidden="{{isHidenLoadMore1}}">
+			  <view id='loading_mask'>
+          <view id='loading_box'>
+            <image class="remind-img" src="/images/more/loading.gif"></image>
+            <text id='loading_txt'>努力加载中...</text>
+          </view>
+        </view>
+		  </view>
+	  </view>
   </scroll-view>
 </view>

@@ -1,0 +1,21 @@
+<!--components/dialogModal/dialogModal.wxml-->
+<view hidden='{{modalHidden}}' class="dialog-modal" catchtouchmove='moveD'>
+  <view class='mask_layer' />
+  <view class='modal_box'>
+    <image bindtap='modal_cancel' class="modal-close"></image>
+    <view class='modal-body'>
+      <view>
+        <view class="modal-title">
+          <text>{{modalTitle}}</text>
+        </view>
+        <!-- modal状态为'success',只显示标题 -->
+        <view class="modal-content" wx:if="{{modalMsg}}">
+          <text>{{modalMsg}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='modal-btn'>
+      <text bindtap='modal_confirm' class='modal-confirm'>今天也要加油鸭！</text>
+    </view>
+  </view>
+</view>

@@ -11,50 +11,67 @@ Page({
     typeCache: [],
     collectionCache: [],
     pastMission: [],
-    missionEmpty: true
+    missionEmpty: true,
+    moremissions: true,
+    completemissions: true,
+    currentId: -1,
+    modalHidden: true,
+    modal: {
+      hidden: true,
+      title: '',
+      msg: '',
+      type: '',
+      params: {}
+    },
+    emptyImage: true
+  },
+
+  onLoad: function(e) {
+
   },
 
   onShow: function (options) {
-    var header = {}
-    var cookie = cookieUtil.getCookieFromStorage()
-    header.Cookie = cookie
-    var that = this
-    var openid = app.globalData.openId
-    wx.request({
-      url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
-      method: 'GET',
-      header: header,
-      data: {
-        'openid': openid
-      },
-      success: function (res) {
-        that.setData({
-          preLoadData: res.data.data.mission,
-          majorCache: res.data.data.major,
-          missionCache: res.data.data.mission,
-          typeCache: res.data.data.type,
-          collectionCache: res.data.data.collection
-        })
-        console.log(that.data.preLoadData)
-        that.showBar(that)
-        that.showPast(that)
-        that.isEmpty(that)
-        if(that.data.preLoadData.length == 0) {
+    if(app.globalData.allow) {
+      var header = {}
+      var cookie = cookieUtil.getCookieFromStorage()
+      header.Cookie = cookie
+      var that = this
+      var openid = app.globalData.openId
+      wx.request({
+        url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
+        method: 'GET',
+        header: header,
+        data: {
+          'openid': openid
+        },
+        success: function (res) {
           that.setData({
-            missionEmpty: false
+            preLoadData: res.data.data.mission,
+            majorCache: res.data.data.major,
+            missionCache: res.data.data.mission,
+            typeCache: res.data.data.type,
+            collectionCache: res.data.data.collection,
+            emptyImage: true
           })
-        } else {
-          that.setData({
-            missionEmpty: true
-          })
+          that.showBar(that)
+          that.showPast(that)
+          if(that.data.preLoadData.length == 0) {
+            that.setData({
+              missionEmpty: false
+            })  
+          } else {
+            that.setData({
+              missionEmpty: true
+            })
+          }
         }
-      }
-    })
-    var time = util.formatTime(new Date())
-    console.log('aaaaaaaaaa')
-    console.log(typeof time)
-    console.log(time.substr(0, 11))
-    console.log('aaaaaaaaaa')
+      })
+      var time = util.formatTime(new Date())
+    } else {
+      this.setData({
+        emptyImage: false
+      })
+    }
   },
 
   showPast: function(that) {
@@ -63,21 +80,22 @@ Page({
       var warningInfo = ''
       for(var i = 0; i < pastMission.length - 1; i++) {
         var ask_list = that.findall(pastMission, '?')
-        warningInfo = warningInfo + '"' + pastMission[i].substr(ask_list[0] + 1, ask_list[1] - ask_list[0] - 1) + '"' + '、'
+        warningInfo = warningInfo + pastMission[i].substr(ask_list[0] + 1, ask_list[1] - ask_list[0] - 1) + '、'
       }
       var ask_list = that.findall(pastMission[pastMission.length - 1], '?')
-      warningInfo = warningInfo + '"' + pastMission[pastMission.length - 1].substr(ask_list[0] + 1, ask_list[1] - ask_list[0] - 1) + '"' + '已过期'
-      wx.showToast({
-        title: warningInfo,
-        duration: 3000,
-        icon: 'none'
+      warningInfo = warningInfo + pastMission[pastMission.length - 1].substr(ask_list[0] + 1, ask_list[1] - ask_list[0] - 1)
+      
+      wx.showModal({
+        title: '过期项目',
+        content: warningInfo,
+        confirmText: '我已知悉',
+        showCancel: false,
       })
       var opeList = that.data.preLoadData
       for(var i = 0; i < pastMission.length; i++) {
         var index = opeList.indexOf(pastMission[i])
         opeList.splice(index, 1)
       }
-      console.log('we now have: ' + opeList)
       that.setData({
         preLoadData: opeList
       })
@@ -104,16 +122,10 @@ Page({
   },
 
   showBar: function (that) {
-    console.log('bbbbbbbbb')
-    console.log(that.data.preLoadData)
     var opeList = that.data.preLoadData
     opeList.sort()
-    console.log(opeList)
     var dict_list = []
     var nowtime = util.formatTime(new Date()).substr(0, 11)
-    if(opeList.length > 0) {
-      console.log(that.findall(opeList[0], '?'))
-    }
     var tempArr = []
     for(var i = 0; i < opeList.length; i++) {
       var index_list = that.findall(opeList[i], '?')
@@ -133,8 +145,8 @@ Page({
         dict_data['content'] = []
         var dict_content_data = {}
         dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1)
-        if (dict_content_data['name'].length > 15) {
-          dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1).substr(0, 14) + "..."
+        if (dict_content_data['name'].length > 10) {
+          dict_content_data['name'] = opedata.substr(index_list[0] + 1, index_list[1] - index_list[0] - 1).substr(0, 9) + "..."
         }
         dict_content_data['type'] = opedata.substr(index_list[1] + 1, index_list[2] - index_list[1] - 1)
         dict_content_data['day'] = that.DateMinus(nowtime, opedata.substr(index_list[2] + 1, opedata.length - index_list[2]))
@@ -163,17 +175,11 @@ Page({
         dict_list[dict_list.length - 1]['barNum'] = dict_list[dict_list.length - 1]['barNum'] + 1
       }
     }
-    console.log('11111111111111111111')
-    console.log(dict_list)
-    console.log('11111111111111111111')
     that.setData({
       missionInfoData: dict_list,
-      pastMission: tempArr
+      pastMission: tempArr,
+      moremissions: false
     })
-  },
-
-  isEmpty: function(that) {
-
   },
 
   DateMinus: function(date1, date2){
@@ -181,7 +187,7 @@ Page({
     var sdate = new Date(date1);
     var now = new Date(date2);
     var days = now.getTime() - sdate.getTime();
-    var day = parseInt(days / (1000 * 60 * 60 * 24));
+    var day = Math.floor(days / (1000 * 60 * 60 * 24));
     return day;
   },
 
@@ -216,30 +222,28 @@ Page({
   deleteItem: function (e) {
     var that = this
     var nowtime = util.formatTime(new Date()).substr(0, 11)
-    console.log('delete info: ' + that.DatePlus(nowtime, e.currentTarget.dataset.time))
-    console.log('delete info: ' + e.currentTarget.dataset.barname)
     var time = that.DatePlus(nowtime, e.currentTarget.dataset.time)
     var deleteitem = e.currentTarget.dataset.barname + '?' + e.currentTarget.dataset.name + '?' + e.currentTarget.dataset.major + '?' + time
-    console.log('delete info: ' + deleteitem)
     var data = this.data
     wx.showModal({
       content: "确认删除此项吗？",
       showCancel: true,
       success: function (res) {
-        console.log(res)
         if (res.confirm) {
           that.onSave(that, deleteitem)
+          that.setData({
+            completemissions: true,
+            moremissions: false
+          })
         }
       }
     })
   },
 
   onSave: function(that, deleteitem) {
-    console.log('we have: ' + that.data.preLoadData)
     var opeList = that.data.preLoadData
     var index = opeList.indexOf(deleteitem)
     opeList.splice(index, 1)
-    console.log('we now have: ' + opeList)
     that.setData({
       preLoadData: opeList
     })
@@ -263,9 +267,6 @@ Page({
           title: '保存成功',
         })
         that.onShow()
-        console.log('??????????????')
-        console.log(that.data.preLoadData)
-        console.log('??????????????')
       }
     })
   }, 
@@ -273,13 +274,40 @@ Page({
   toggleBtn: function (event) {
     var that = this;
     var itemId = event.currentTarget.id;
-    if(itemId < 0) {
-      itemId = -itemId;
+    //if(itemId < 0) {
+    //  itemId = -itemId;
+    //}
+    //var up = "missionInfoData[" + (itemId - 1) + "].id";
+    //var resId = -event.currentTarget.id;
+    //that.setData ({
+    //  [up]: resId
+    //})
+    if(that.data.currentId == itemId) {
+      that.setData({
+        currentId: -1
+      })
+    } else {
+      that.setData({
+        currentId: itemId
+      })
     }
-    var up = "missionInfoData[" + (itemId - 1) + "].id";
-    var resId = -event.currentTarget.id;
-    that.setData ({
-      [up]: resId
-    })
+    if(this.data.moremissions && this.data.currentId == -1) {
+      that.setData({
+        moremissions: false
+      })
+    } else {
+      that.setData({
+        moremissions: true
+      })
+    }
+    if (this.data.currentId != -1) {
+      that.setData({
+        completemissions: false
+      })
+    } else {
+      that.setData({
+        completemissions: true
+      })
+    }
   }
 })

@@ -1,98 +1,101 @@
-.section{
-  font-size:28rpx;
-  margin-left: 50rpx;
-  margin-top: 30rpx;
- }
-.on{
- display: block
- }
 .off{
  display: none
 }
-.picker{
- width: 128rpx;
- height: 50rpx;
-}
-.shururenwumingcheng{
- width: 300rpx;
- height: 50rpx;
+
+.missiontype {
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  align-items: center;
+  background: white;
+  box-shadow:8rpx 8rpx 20rpx 2rpx whitesmoke;
 }
 
-.missionContent {
- display: flex;
- flex-direction: column;
- width: 150rpx;
- height: 80vh;
- 
- justify-content: space-around
+.majorname {
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  align-items: center;
+  background: white;
+  box-shadow:8rpx 8rpx 20rpx 2rpx whitesmoke;
 }
 
-.typetitle text {
- font-size: 40rpx;
+.missionname {
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  align-items: center;
+  background: white;
+  box-shadow:8rpx 8rpx 20rpx 2rpx whitesmoke;
+}
+
+.missiontime {
+  display: flex;
+  flex-direction: row;
+  height: 200rpx;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  align-items: center;
+  background: white;
+  box-shadow:8rpx 8rpx 20rpx 2rpx whitesmoke;
 }
 
 .typetitle {
- background-color: #1fc077;
- height: 80rpx;
- display: flex;
- align-items: center;
- margin-left: -30rpx;
- box-shadow:0px 4px 4px 4px #66b993;
- width: 200rpx;
- border-radius: 30rpx;
-}
-
-.toptypetitle {
- height: 80rpx;
- display: flex;
- margin-left: -30rpx;
- align-items: center;
- margin-top: 50rpx;
- background-color: #1fc077;
- box-shadow:0px 4px 4px 4px #66b993;
- width: 200rpx;
- border-radius: 30rpx;
-}
-
-.toptypetitle text {
- font-size: 40rpx;
-}
-
-.baocunanniu {
- margin-top: 60rpx;
- width: 600rpx;
- background-color: #1fc077;
- border-radius: 98rpx;
- box-shadow:0px 2px 4px 2px #66b993;
+  margin-left: 50rpx;
+  font-size: 35rpx;
+  width:200rpx;
 }
 
 .titlename {
- margin-left: 17rpx;
- font-family: FangSong;
- font-weight: 600
+  word-break: keep-all;
+  font-family: SimHei;
+  font-weight: bold;
 }
 
-.huojian {
- height: 500rpx;
- width: 500rpx;
- margin-left: -260rpx;
+.typecontent {
+  width: 200rpx;
 }
 
-.tuwen {
- display: flex;
- flex-direction: column;
- justify-content: space-around;
- align-items: center;
+.inputcontent input {
+  width: 200rpx;
 }
 
-.section {
- margin-top: -10rpx;
- margin-left: 0rpx;
-}
-.missiontype{
-  width:100rpx;
+.missionContent {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: space-around;
+  margin-top: 50rpx;
 }
 
-page{
-  background-color: #fad73f;
+page {
+  /*background-image: linear-gradient(180deg, #fad73f 0%, #8fd3f4 100%);*/
+  background: #fad73f;
+}
+
+.btn {
+  margin-top: 50rpx;
+  width: 50%;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  border-radius: 120rpx;
+  box-shadow:4rpx 4rpx 10rpx 2rpx #e2ebf0;
+}
+
+.direction {
+  width: 70rpx;
+  height: 50rpx;
+  margin-left: 10rpx;
+  margin-right: 60rpx;
+}
+
+.btn-hover{
+  position: relative;
+  top: 3rpx;
+  box-shadow:0px 0px 20px whitesmoke inset;
 }

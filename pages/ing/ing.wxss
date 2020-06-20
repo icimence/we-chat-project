@@ -1,27 +1,45 @@
 .topInfo {
-  margin-top: 20rpx;
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100vw;
-  height: 60rpx;
+  margin-bottom: 50rpx;
+  justify-content: space-around;
+}
+
+.missionstyle {
+  display: flex;
+  flex-direction: column;
+  width: 150rpx;
+  align-items: center;
+}
+
+.playstyle {
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+  align-items: center;
 }
 
 .topImage1 {
-  height: 30rpx;
-  width: 30rpx;
-  margin-left: 20rpx;
+  height: 150rpx;
+  width: 100rpx;
 }
 
 .topImage2 {
-  height: 50rpx;
-  width: 50rpx;
-  margin-left: 630rpx;
+  height: 150rpx;
+  width: 100rpx;
 }
 
 .bar {
-  width: 100vw;
-  height: 100rpx;
+  width: 710rpx;
+  margin-top: 20rpx;
+  height:80rpx;
+  background-color: rgba(235, 76, 51, 0.801);
+  border-radius: 50rpx;
+  box-shadow: 5rpx 5rpx 20rpx 2rpx rgba(235, 76, 51, 0.568);
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
 .barimage {
@@ -31,45 +49,62 @@
 
 .barname {
   display: block;
-  margin-left: 70rpx;
-  margin-top: -78rpx;
   height: 50rpx;
   width: 200rpx;
+  margin-left: 50rpx;
+  color: white;
+  font-weight: bold;
 }
 
 .barinfo {
-  width: 100vw;
-  height:100rpx;
+  width: 100%;
+  padding-top: 20rpx;
 }
 
 .barnum {
   margin-top: -50rpx;
-  margin-left:675rpx;
+  margin-left: 600rpx;
+  color: white;
+  font-weight: bold;
 }
 
 .mission {
-  background: whitesmoke;
+  background: white;
   height: 150rpx;
-  width: 100vw;
+  width: 710rpx;
+  margin-top: 20rpx;
+  border-radius: 60rpx;
+  box-shadow: 5rpx 5rpx 20rpx 2rpx whitesmoke;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
 }
 
 .missionnameview {
   display: flex;
   flex-direction: column;
-  margin-left: 230rpx;
-  margin-top: -120rpx;
+  margin-left: 210rpx;
+  margin-top: -125rpx;
   height: 50rpx;
   width: 300rpx;
 }
 
 .missionnameview1 {
   height: 50rpx;
-  width: 600rpx;
+  width: 400rpx;
+}
+.missionnameview1 text {
+  font-size: 35rpx;
+  font-family: SimHei;
+  font-weight: bold;
 }
 
 .missionnameview2 {
   height: 50rpx;
   width: 300rpx;
+  margin-top: 15rpx;
+}
+.missionnameview2 text {
+  font-size: 25rpx;
 }
 
 .timeimageview {
@@ -78,10 +113,10 @@
 }
 
 .timeimage {
-  width: 80rpx;
-  height: 80rpx;
-  margin-left: 10rpx;
-  margin-top: 30rpx;
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 47rpx;
+  margin-left: 40rpx;
 }
 
 .timetextview {
@@ -92,8 +127,8 @@
 }
 
 .stateview {
-  margin-left: 683rpx;
-  margin-top: -30rpx;
+  margin-left: 615rpx;
+  margin-top: -20rpx;
   height: 50rpx;
   width: 50rpx;
 }
@@ -135,4 +170,37 @@
 .emptytext {
   margin-left: 50rpx;
   margin-top: 100rpx;
+}
+
+page {
+  background: #fad73f
+}
+
+.btn-hover{
+  position: relative;
+  top: 3rpx;
+  box-shadow:0px 0px 1px white inset;
+}
+
+.moremissions image {
+  height: 700rpx;
+  width: 700rpx;
+  margin-left: 20rpx;
+  margin-bottom: 50rpx;
+}
+
+.moremissions {
+  margin-top: 100rpx;
+}
+
+.addmissionbottom image {
+  height: 60rpx;
+  width: 60rpx;
+  margin-left: 340rpx;
+  margin-top: 50rpx;
+}
+
+.ingpage {
+  width:100%;
+  overflow-x:hidden;
 }

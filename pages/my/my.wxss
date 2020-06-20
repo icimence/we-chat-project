@@ -14,10 +14,31 @@
   margin-left: 50rpx;
 }
 
+.emptyLogo {
+  height: 150rpx;
+  width: 150rpx;
+}
+
+.kaiqishouquan {
+  margin-left: -10rpx;
+  font-size: 30rpx;
+}
+
 .username {
   display: block;
   margin-left: 230rpx;
   margin-top: -90rpx;
+}
+
+.btn-button {
+  margin-left: 210rpx;
+  margin-top: -110rpx;
+  background-color: white;
+  width: 380rpx;
+}
+
+.btn-button::after {
+  border: none
 }
 
 .topinfo {
@@ -33,10 +54,21 @@
   margin-top: -55rpx;
 }
 
+.feedback image {
+  width: 50rpx;
+  height: 50rpx;
+}
+
 .feedback {
-  width: 60rpx;
-  height: 81rpx;
+  width: 55rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
   margin-left: 600rpx;
+  margin-top: 10rpx;
+  background-color: white
 }
 
 .feedback::after {
@@ -102,6 +134,8 @@
   flex-direction: column;
   height: 100vh;
   background-color: "#fad73f";
+  width:100%;
+  overflow-x:hidden;
 }
 
 .nihaimeiyouxuanzeguorenhezhuanyedianjixuanze {
@@ -250,12 +284,12 @@
 }
 
 .zhuanyexiang {
-  height: 500rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100wh;
   justify-content: space-around;
+  height: 500rpx;
 }
 
 
@@ -265,20 +299,39 @@
 }
 
 .zhuanyeneirong {
-  display: block;
   align-items: center;
+  display: block;
 }
 
 .anniu {
   margin-left: 350rpx;
-  margin-top: 60rpx;
+  margin-top: 50rpx;
+}
+
+.tishi {
+  height: 60rpx;
+  width: 60rpx;
 }
 
 .xiaotishi {
-  margin-top: 30rpx;
   align-items: center;
-  margin-left: 160rpx;
+  margin-left: 140rpx;
+  margin-top:50rpx;
   margin-bottom: 50rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.btn-hover{
+  position: relative;
+  top: 3rpx;
+  box-shadow:0px 0px 8px whitesmoke inset;
+}
+
+.btn-hover-jinji {
+  position: relative;
+  top: 5rpx;
+  box-shadow:0px 0px 0px 0px whitesmoke inset;
 }
 
 .xiaotishi text {
@@ -291,32 +344,6 @@
   width: 150rpx;
 }
 
-.jinjitime {
-  margin-left: -133rpx;
-  margin-top: 80rpx;
-  font-size: 20rpx;
-  font-weight: 900
-}
-
-.rili {
-  display: flex;
-  flex-direction: row;
-  margin-left: 100rpx;
-}
-
-.rilibar {
-  display: flex;
-  flex-direction: row
-}
-
-.jinjirenwubar {
-
-}
-
-.jinjirenwubar text {
-  font-size: 40rpx
-}
-
 .tishiicon {
   width: 50rpx;
   height: 50rpx;
@@ -326,7 +353,14 @@
 .jinjirenwuinfo{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-color: rgba(235, 76, 51, 0.801);
+  height: 400rpx;
+  width: 350rpx;
+  margin-left: 50rpx;
+  justify-content: space-around;
+  box-shadow: 5rpx 5rpx 20rpx 2rpx rgba(235, 76, 51, 0.568);
+  margin-top: -20rpx;
+  border-radius: 40rpx;
 }
 
 .biaoqian {
@@ -334,39 +368,90 @@
   height: 80rpx;
 }
 
-.jinjirenwubarInfo {
+.riqiinfo text {
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-family: SimHei;
+  font-weight: bold;
+  color: white;
+}
+
+.riqiinfo image {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.riqiinfo {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  margin-top: 50rpx;
 }
 
-.jinjirenwunameInfo {
+.fenleiinfo text {
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-family: SimHei;
+  font-weight: bold;
+  color: white;
+}
+
+.fenleiinfo image {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.fenleiinfo {
   display: flex;
   flex-direction: row;
-  margin-top: 50rpx;
-  margin-left: -50rpx;
 }
 
-.jinjirenwuname text {
-  font-size: 40rpx;
-  margin-left: 10rpx;
+.shixianginfo text {
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-family: SimHei;
+  font-weight: bold;
+  color: white;
 }
 
-.chilun {
-  width: 50rpx;
-  height: 50rpx;
+.shixianginfo image {
+  height: 60rpx;
+  width: 60rpx;
 }
 
-.jinjirenwutypeInfo {
+.shixianginfo {
   display: flex;
   flex-direction: row;
-  margin-top: 50rpx;
 }
 
-.jinjirenwutype text {
-  font-size: 40rpx;
-  margin-left: 10rpx;
+.zhuanyeinfo text {
+  font-size: 30rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  font-family: SimHei;
+  font-weight: bold;
+  color: white;
+}
+
+.zhuanyeinfo image {
+  height: 60rpx;
+  width: 60rpx;
+}
+
+.zhuanyeinfo {
+  display: flex;
+  flex-direction: row;
+}
+
+.pikaqiu {
+  margin-left: 250rpx;
+  margin-top: -200rpx;
+}
+
+.pikaqiu image {
+  width: 500rpx;
+  height: 530rpx;
 }
 
 .shoucangnameText {
@@ -402,4 +487,77 @@
 
 .item {
   margin-left: 50rpx;
+}
+
+modal {
+  z-index: 1024;
+}
+
+/* 整个布局的样式 */
+.swiper-container {
+	/*border: 1px solid red;*/
+	box-sizing: border-box;
+	display: flex;
+  	flex-direction: column;
+  	/* 下面两个决定了居中样式 */
+	justify-content: center;
+	align-items: center;
+  margin-top: -50rpx;
+}
+
+/* 水平滑动组件样式 */
+.swiper {
+	width: 750rpx;
+	height: 800rpx;
+}
+/* 水平滑动组件中 单个卡片的样式 */
+.swiper-item {
+	/*border: 1px solid blue;*/
+	/* 宽高自动设为100% */
+	display: flex;
+	justify-content: center;
+  align-items: center;
+  margin-top: -10rpx;
+}
+/* 书籍 */
+.book-container {
+	border: 1px solid #e6e6e6;
+	width: 400rpx;
+	height: 600rpx;
+	padding: 30rpx 20rpx;
+	display: flex;
+	flex-direction: column;
+	/* 各行之间留有空白的容器内：效果看下方的图片 */
+	justify-content: space-around;
+	align-items: center;
+	border-radius: 20rpx;
+	box-shadow: 8px 8px 8px 8px whitesmoke;
+}
+/* 书籍按压效果 */
+.book-container-hover {
+	transform: scale(0.96,0.96);
+  	transition: all 1 ease 0;
+}
+/* 书籍图片样式 */
+.book-image > image {
+  width: 320rpx;
+}
+/* 书籍信息样式 */
+.book-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	/*border: 1px solid black;*/
+	margin-top: 20rpx;
+}
+/* 书籍名字样式 */
+.book-name {
+	color: #1e1e1e;
+	font-size: 35rpx;
+	margin-bottom: 8rpx;
+}
+/* 加载中样式 */
+.donut-container {
+	padding-top: 200rpx;
 }

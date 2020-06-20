@@ -9,7 +9,7 @@ Page({
     hiddenGoal: false,
     hiddenUrgency: true,
     hiddenCollection: true,
-    majors: ['工学-计算机科学与技术-计算机科学与技术', '工学-计算机科学与技术-计算机系统结构', '工学-计算机科学与技术-计算机软件与理论', '工学-计算机科学与技术-计算机应用技术', '工学-软件工程-软件工程'],
+    majors: ['计算机科学与技术', '计算机系统结构', '计算机软件与理论', '计算机应用技术', '软件工程'],
     major: [],
     hiddenZhuanye: false,
     renwuHidden: false,
@@ -25,59 +25,73 @@ Page({
     majorCache: [],
     collectionCache: [],
     items: [],
-    modalHidden: true
+    modalHidden: true,
+    modal: {
+      hidden: true,
+      title: '',
+      msg: '',
+      type: '',
+      params: {}
+    },
+    indicatorDots: false, // 是否显示轮播指示点
+    autoplay: false, // 是否自动播放轮播
+    interval: 5000, // 轮播间隔
+    duration: 1000, // 轮播播放延迟
+    circular: true, // 是否采用衔接滑动
+    sideMargin: '100rpx', // 幻灯片前后边距
+    showLoading: false, // 是否显示loading态,
+    pikaqiu: false,
+    allow: true
   },
 
   onShow: function (options) {
-    var header = {}
-    var cookie = cookieUtil.getCookieFromStorage()
-    console.log('显示cookie')
-    console.log(cookie)
-    console.log('显示cookie')
-    //header.Cookie = cookie
-    var header = {
-      'content-type': 'application/json; charset=utf-8',
-      'cookie': wx.getStorageSync("sessionid")
-    };
-    var that = this
-    var openid = app.globalData.openId
-    wx.request({
-      url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
-      method: 'GET',
-      header: header,
-      data: {
-        'openid': openid
-      },
-      success: function(res){
-        console.log('检查远端数据库')
-        console.log(res)
-        console.log('检查远端数据库')
-        that.setData({
-          major: res.data.data.major,
-          renwu_list: res.data.data.mission,
-          typeCache: res.data.data.type,
-          majorCache: res.data.data.major,
-          missionCache: res.data.data.mission,
-          collectionCache: res.data.data.collection,
-          shoucang_list: res.data.data.collection
-        })
-        if(that.data.major.length > 0) {
+    if(app.globalData.allow) {
+      var header = {}
+      var cookie = cookieUtil.getCookieFromStorage()
+      //header.Cookie = cookie
+      var header = {
+        'content-type': 'application/json; charset=utf-8',
+        'cookie': wx.getStorageSync("sessionid")
+      };
+      var that = this
+      var openid = app.globalData.openId
+      wx.request({
+        url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/user',
+        method: 'GET',
+        header: header,
+        data: {
+          'openid': openid
+        },
+        success: function(res){
           that.setData({
-            hiddenZhuanye: true
+            major: res.data.data.major,
+            renwu_list: res.data.data.mission,
+            typeCache: res.data.data.type,
+            majorCache: res.data.data.major,
+            missionCache: res.data.data.mission,
+            collectionCache: res.data.data.collection,
+            shoucang_list: res.data.data.collection,
+            allow: true
           })
-        } else {
-          that.setData({
-            hiddenZhuanye: false
-          })
+          if(that.data.major.length > 0) {
+            that.setData({
+              hiddenZhuanye: true
+            })
+          } else {
+            that.setData({
+              hiddenZhuanye: false
+            })  
+          }
+          that.ifHaveMission(that)
+          that.ifHaveCollection(that)
+          that.showCollection(that)
         }
-        that.ifHaveMission(that)
-        that.ifHaveCollection(that)
-        that.showCollection(that)
-        console.log('hhhhhhh')
-        console.log(res.data)
-        console.log('hhhhhhh')
-      }
-    })
+      })
+    } else {
+      this.setData({
+        allow: false
+      })
+    }
   },
 
   ifHaveMission: function(that) {
@@ -85,7 +99,6 @@ Page({
       that.setData({
         renwuHidden: false
       })
-      console.log("it's me")
     } else {
       var opeList = that.data.renwu_list
       var minTime = opeList[0].substr(opeList[0].length - 10)
@@ -106,10 +119,6 @@ Page({
       }
       var type = saveList.substr(indexList[1] + 1, indexList[2] - indexList[1] - 1)
       var time = saveList.substr(indexList[2] + 1, saveList.length)
-      console.log(bar)
-      console.log(name)
-      console.log(type)
-      console.log(time)
       that.setData({
         jinjirenwubar: bar,
         jinjirenwuname: name,
@@ -133,7 +142,6 @@ Page({
   },
 
   showCollection: function(that) {
-    console.log(that.data.shoucang_list)
     var opeList = that.data.shoucang_list
     var dict_list = []
     if (opeList.length > 0) {
@@ -155,8 +163,6 @@ Page({
     that.setData({
       items: dict_list
     })
-    console.log('items')
-    console.log(that.data.items)
   },
 
   findall: function (a, x) {
@@ -174,9 +180,10 @@ Page({
     return results
   },
 
-  showIntroduction: function(e) {
+  goDetail: function(e) {
+    console.log('显示item内容')
+    console.log(e.currentTarget)
     var that = this
-    console.log(e.currentTarget.dataset.item.Introduction)
     wx.showModal({
       title: e.currentTarget.dataset.item.Name,
       content: e.currentTarget.dataset.item.Introduction,
@@ -224,6 +231,23 @@ Page({
     })
   },
 
+  showSlogan: function(e) {
+    var sloganList = app.globalData.slogan
+    var nums = sloganList.length
+    var index = Math.floor(Math.random()*(nums - 1))
+    var slogan = sloganList[index]
+    var that = this
+    wx.showModal({
+      title: '今日有研',
+      content: slogan,
+      showCancel: false,
+      confirmText: '了解',
+      success: function (res) {
+        that.onShow()
+      },
+    })
+  },
+
   DateMinus: function (date1, date2) {
     //date1:小日期   date2:大日期
     var sdate = new Date(date1);
@@ -234,10 +258,8 @@ Page({
   },
 
   bindMajorPickerChange: function (e) {
-    console.log('majorPicker发送选择改变，携带值为', e.detail.value)
     var newItem = this.data.majors[e.detail.value]
     var newData = this.data.major
-    console.log(newItem)
     // 去重
     if (newData.indexOf(newItem) > -1) {
       wx.showToast({
@@ -245,6 +267,14 @@ Page({
         duration: 1000,//显示时长
         mask: true,//是否显示透明蒙层，防止触摸穿透，默认：false
         icon: 'none'  
+      })
+      return
+    }
+    if (this.data.major.length >= 3) {
+      wx.showToast({
+        title: '选择专业过多，请删除现有专业后尝试',
+        icon: 'none',
+        duration: 2000
       })
       return
     }
@@ -259,16 +289,13 @@ Page({
   deleteItem: function (e) {
     var that = this
     var index = e.currentTarget.dataset.index
-    console.log('delete index: ' + index)
     var data = this.data
     wx.showModal({
       content: "确认删除此项吗？",
       showCancel: true,
       success: function (res) {
-        console.log(res)
         if (res.confirm) {
           data.major.splice(index, 1)
-          console.log(data.major)
         }
         that.setData({
           major: data.major
@@ -283,45 +310,26 @@ Page({
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
-    console.log('oooooooo')
-    console.log(that.data.major)
-    console.log('oooooooo')
     if (that.data.major.length == 0) {
-      console.log('fuck')
       that.setData({
         hiddenZhuanye: false
       })
-    } else if(that.data.major.length >= 4) {
-      wx.showToast({
-        title: '选择专业过多，请删除现有专业后尝试',
-        icon: 'none',
-        duration: 2000
-      })
-      that.onShow()
-    } else {
-      wx.request({
-        url: app.globalData.serverUrl + '/api/v1.0/auth/user',
-        method: 'POST',
-        data: {
-          major: that.data.major,
-          type: that.data.typeCache,
-          mission: that.data.missionCache,
-          collection: that.data.collectionCache,
-          openid: app.globalData.openId
-        },
-        header: header,
-        success(res) {
-          console.log('kkkkkkk')
-          console.log(res)
-          console.log('kkkkkkk')
-          if (isShowModal) {
-            wx.showToast({
-              title: '保存成功',
-            })
-          }
-        }
-      })
     }
+    wx.request({
+      url: app.globalData.serverUrl + '/api/v1.0/auth/user',
+      method: 'POST',
+      data: {
+        major: that.data.major,
+        type: that.data.typeCache,
+        mission: that.data.missionCache,
+        collection: that.data.collectionCache,
+        openid: app.globalData.openId
+      },
+      header: header,
+      success(res) {
+        console.log(res)
+      }
+    })
   },
 
   // 更新data 切换选中状态
@@ -348,5 +356,97 @@ Page({
       hiddenUrgency: true,
       hiddenCollection: false
     })
+  },
+  practicetwister: function(e) {
+    var twisterList = app.globalData.twister
+    var nums = twisterList.length
+    var index = Math.floor(Math.random() * (nums - 1))
+    var twister = twisterList[index]
+    var that = this
+    this.setData({
+      'modal.hidden': false,
+      'modal.title': '学累了就来段儿绕口令吧~',
+      'modal.msg': twister,
+      'modal.type': '',
+      'modal.params': {
+        type: 'default'
+      }
+    })
+  },
+  handleDefaultClick: function () {
+    var sloganList = app.globalData.slogan
+    var nums = sloganList.length
+    var index = Math.floor(Math.random() * (nums - 1))
+    var slogan = sloganList[index]
+    var that = this
+    this.setData({
+      'modal.hidden': false,
+      'modal.title': '每日一研',
+      'modal.msg': slogan,
+      'modal.type': '',
+      'modal.params': {
+        type: 'default'
+      }
+    })
+  },
+  modalConfirmCallBack: function (e) {
+    const params = e.target.dataset.params;
+  },
+  changeImage: function(e) {
+    if(this.data.pikaqiu) {
+      this.setData({
+        pikaqiu: false
+      })
+    } else {
+      this.setData({
+        pikaqiu: true
+      })
+    }
+  },
+  authorize: function (e) {
+    var that = this
+    // 登陆并获取cookie
+    wx.login({
+      success: function (res) {
+        var code = res.code
+        var appId = app.globalData.appId
+        var nickname = that.stringToUnicode(e.detail.userInfo.nickName)
+        // 请求后台
+        wx.request({
+          url: app.globalData.serverUrl + app.globalData.apiVersion + '/auth/authorize',
+          method: 'POST',
+          data: {
+            code: code,
+            appId: appId,
+            nickname: nickname
+          },
+          header: {
+            'content-type': 'application/json' // 默认值
+          },
+          success(res) {
+            that.data.ifLoad = false
+            // 保存cookie
+            var cookie = cookieUtil.getSessionIDFromResponse(res)
+            wx.setStorageSync('sessionid', res.header['Set-Cookie']);
+            cookieUtil.setCookieToStorage(cookie)
+            app.globalData.code = code
+            that.setData({
+              isLogin: true,
+              userInfo: app.globalData.userInfo,
+              hasUserInfo: true,
+              allow: true
+            })
+            app.globalData.allow = true
+            app.globalData.openId = res.data.data
+            app.setAuthStatus(true)
+            wx.hideLoading()
+            that.onShow()
+          }
+        })
+      }
+    })
+  },
+  stringToUnicode: function (str) {
+    return escape(str).replace(/%u/gi, '\\u');//如果不替换,输出格式为:%uxxxx%uxxxx
   }
 })

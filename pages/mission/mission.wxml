@@ -2,55 +2,58 @@
   <!--新建任务清单-->
   <view class='missionContent'>
     <!--任务类别标签-->
-    <view class="missiontype">
-      <view class="toptypetitle"><text class='titlename'>任务类别</text></view>
-    </view>
-    <!--任务类别选择器-->
-    <view>  
-      <picker bindchange="bindTypePickerChange" value="{{typeIndex1}}" range="{{typeArray}}">
-        <view>
-          <text hidden='{{missiontypeHidden}}'>{{newtype}}</text>
+    <border class="missiontype">
+      <view class="typetitle"><text class='titlename'>任务类别</text></view>
+      <image src='/icons/箭头.png' class='direction'></image>
+      <!--任务类别选择器-->
+      <view>  
+        <picker bindchange="bindTypePickerChange" value="{{typeIndex1}}" range="{{typeArray}}">
+          <view class='typecontent'>
+            <text hidden='{{missiontypeHidden}}'>{{newtype}}</text>
+          </view>
+        </picker>
+        <!--任务类别输入框-->
+        <view class="typecontent {{reply1?'on':'off'}}">
+          <input name="other" placeholder="请输入" type="text" bindinput='missiontypeInput'/>
         </view>
-      </picker>
-      <!--任务类别输入框-->
-      <view class="section {{reply1?'on':'off'}}">
-        <input name="other" placeholder="请输入任务类别" type="text" bindinput='missiontypeInput'/>
       </view>
-    </view>
+    </border>
     <!--专业名称标签-->
-    <view class='majorname'>
+    <border class='majorname'>
       <view class='typetitle'><text class='titlename'>相关专业</text></view>
-    </view>
-    <!--专业名称选择器-->
-    <view>  
-      <picker bindchange='bindMajorPickerChange' value='{{majorIndex1}}' range='{{majorArray}}'>
-        <view>
-          <text>{{newmajor}}</text>
-        </view>
-      </picker>
-    </view>
+      <image src='/icons/箭头.png' class='direction'></image>
+      <!--专业名称选择器-->
+      <view>  
+        <picker bindchange='bindMajorPickerChange' value='{{majorIndex1}}' range='{{majorArray}}'>
+          <view class='typecontent'>
+            <text>{{newmajor}}</text>
+          </view>
+        </picker>
+      </view>
+    </border>
     <!--任务名称标签-->
-    <view class='missionname'>
+    <border class='missionname'>
       <view class='typetitle'><text class='titlename'>任务名称</text></view>
-    </view>
-    <!--任务名称输入框-->
-    <view class='shururenwumingcheng'>
-      <input name='diyname' placeholder="请输入任务名称" bindinput='missionnameInput'/>
-    </view>
+      <image src='/icons/箭头.png' class='direction'></image>
+      <!--任务名称输入框-->
+      <view class='inputcontent'>
+        <input name='diyname' placeholder="请输入" bindinput='missionnameInput'/>
+      </view>
+    </border>
     <!--任务DDL标签-->
-    <view class="missiontime">
-      <view class="typetitle"><text class='titlename'>任务DDL</text></view>
-    </view>
-    <!--任务DDL选择器-->
-    <view>
-      <picker mode="date" value="{{date}}" start="2020-05-04" end="2120-05-04" bindchange="bindDateChange">
-        <view class="picker">
-          {{newdate}}
-        </view>
-      </picker>
-    </view>
+    <border class="missiontime">
+      <view class="typetitle"><text class='titlename'>任务日期</text></view>
+      <image src='/icons/箭头.png' class='direction'></image>
+      <!--任务DDL选择器-->
+      <view class='ddlPicker'>
+        <picker mode="date" value="{{date}}" start="2020-05-04" end="2120-05-04" bindchange="bindDateChange">
+          <view class="typecontent">
+            <text>{{newdate}}</text>
+          </view>
+        </picker>
+      </view>
+    </border>
   </view>
   <!--保存按钮-->
-<button class='baocunanniu' bindtap='save'>保存</button>
+  <button class='btn' bindtap='save' hover-class="btn-hover">保存</button>
 </view>
-

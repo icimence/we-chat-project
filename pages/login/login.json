@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText":"授权登录",
   "navigationBarBackgroundColor":"#fad73f",
-  "enablePullDownRefresh": true,
-  "backgroundColor": "#fad73f"
+  "enablePullDownRefresh": false,
+  "disableScroll": true
 }

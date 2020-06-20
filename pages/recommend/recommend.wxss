@@ -1,3 +1,8 @@
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 .swiper-tab{  
   width: 100%;  
   border-bottom: 1px solid #dadada;
@@ -27,34 +32,39 @@
 }
 .bookimg{
   zoom: 75%;
-  margin-top: 50rpx;
-  margin-left: -80rpx;
   display: inline-block;
 }
 .intro{
   font-size: 47rpx;
-  float: right;
   width: 280rpx;
-  margin-right: 20rpx;
-  height: 0rpx;
-  margin-top: -400rpx;
-  text-align: center;
+  font-weight: bold;
+}
+
+.imgAndAuthor {
+  display: flex;
+  flex-direction: row;
+  margin-left: -30rpx;
+  margin-right: 70rpx;
+  margin-top: 70rpx;
+  align-items: center;
+}
+
+.authorInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: -40rpx;
+  margin-right: 70rpx;
 }
 
 .author{
   font-size: 37rpx;
-  float: right;
-  word-wrap: break-word;
+  margin-top: 20rpx;
+  margin-right: 70rpx;
+}
+.author text {
   word-break: break-all;
-  white-space: pre-line;
-  width: 280rpx;
-  margin-top: -220rpx;
-  margin-right: 20rpx;
-  height: 0rpx;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  align-content: center;
+  font-family: FangSong;
+  font-weight: 550;
 }
 .tab-list-content{
   display: none;
@@ -87,21 +97,36 @@
 }
 
 .introMessage{
-  text-align: center;
+  margin-left: 70rpx;
   font-size: 35rpx;
   margin-top: 20rpx;
   font-weight: normal;
-  width: 680rpx;
+  width: 610rpx;
+  margin-right: 70rpx;
+  display: flex;
+  flex-direction: row;
+}
+.introMessage text {
+  word-break: break-all;
+  font-family: FangSong;
+  font-weight: 550;
 }
 
 .bName{
   font-size: 47rpx;
   margin-left: 70rpx;
   font-weight: bold;
+  margin-top: 20rpx;
 }
 .bNameInfo{
   font-size: 35rpx;
-  text-align: center;
+  margin-left: 70rpx;
+  margin-right: 70rpx;
+  margin-top: 20rpx;
+}
+.bNameInfo {
+  font-family: FangSong;
+  font-weight: 550;
 }
 .function{
   align-content: center;
@@ -112,41 +137,117 @@
 .comp{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items:center;
+
+}
+
+.toolView {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .compImg{
   border-radius: 10%;
   zoom: 80%;
-  margin-top: 50rpx;
+  margin-top: 70rpx;
 }
 
-.compName{
+.compName {
+  margin-top: 50rpx;
+  margin-left: 70rpx;
+  margin-right: 70rpx;
+}
+
+.compName text{
   font-weight: bold;
-  margin-top: 80rpx;
   font-size: 15pt;
-  text-align: center;
 }
 
 .compIntro{
-  margin-top: 70rpx;
-  width: 600rpx;
+  margin-top: 20rpx;
+  margin-left: 70rpx;
+  margin-right: 70rpx;
+}
+
+.compIntro text {
+  font-family: FangSong;
+  font-weight: 550;
+  word-break: break-all;
 }
 
 .button{
   display: flex;
   flex-direction: row;
-  margin-top: 50rpx;
+  margin-top: 70rpx;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20rpx;
 }
 .leftButton{
-  margin-left: 20rpx;
-  width: 150rpx;
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  border-radius: 20rpx;
+  background-color: #fad73f;
+  color: #6190E8
+}
+.leftButton::after {
+  border: 0;
+}
+.leftButton image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 10rpx;
 }
 
-.defaultButton{
-  margin-left: 75rpx;
-  width: 150rpx;
+.middleButton{
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  border-radius: 20rpx;
+  background-color: #fad73f;
+  color: #6190E8
+}
+.middleButton::after {
+  border: 0;
+}
+.middleButton image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 10rpx;
+}
+
+.rightButton{
+  width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 25rpx;
+  border-radius: 20rpx;
+  background-color: #fad73f;
+  color: #6190E8
+}
+.rightButton::after {
+  border: 0;
+}
+.rightButton image {
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 10rpx;
+}
+
+.btn-hover{
+  position: relative;
+  top: 3rpx;
+  box-shadow:0px 0px 8px #1296db inset;
 }
 
 .lzy-loading{
@@ -170,3 +271,51 @@
   from{transform:rotate(0deg);}
   to{transform:rotate(360deg);}
 }
+
+#loading_mask {
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loading_box {
+  width: 150px;
+  height: 150px;
+  border-radius: 4px;
+  background-color: #fad73f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#loading_txt {
+  margin-bottom: 20rpx;
+}
+.remind-img {
+  width: 250rpx;
+  height: 250rpx;
+}
+.cry {
+  width: 500rpx;
+  height: 500rpx;
+}
+
+.missPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 90%
+}
+
+.missPage text {
+  font-family: KaiTi;
+  font-weight: 500;
+  font-size: 40rpx;
+}
+

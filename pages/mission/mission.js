@@ -8,16 +8,16 @@ Page({
     majorArray: ['计算机', '经济学'],
     typeIndex: 0,
     majorIndex: 0,
-    newtype: '点击选择任务类别',
+    newtype: '请选择',
     missiontypeHidden: false,
     newname: '请选择',
-    newdate: '请选择\n完成日期',
-    newmajor: '点击选择相关专业',
+    newdate: '请选择',
+    newmajor: '请选择',
     mission: [],
     missionCache: [],
     typeCache: [],
     majorCache: [],
-    collectionCache: []
+    collectionCache: [],
   },
 
   onLoad: function(options) {
@@ -50,20 +50,15 @@ Page({
             resArr.push(temp)
           }
         }
-        resArr.push('请输入其他类别')
+        resArr.push('请输入')
         that.setData({
           typeArray: resArr
         })
-        console.log(that.data.mission)
-        console.log(that.data.typeArray)
       }
     })
   },
 
   bindTypePickerChange: function (e) {
-    console.log(this.data.typeArray[e.detail.value])
-    console.log(this.data.typeArray.length)
-    console.log(e.detail)
     var typename = this.data.typeArray[e.detail.value]
     if (e.detail.value == this.data.typeArray.length - 1) {
       this.setData({ 
@@ -82,8 +77,6 @@ Page({
   },
 
   bindMajorPickerChange: function (e) {
-    console.log(this.data.majorArray[e.detail.value])
-    console.log(e.detail)
     var majorname = this.data.majorArray[e.detail.value]
     this.setData({
       newmajor: majorname,
@@ -92,47 +85,54 @@ Page({
   },
 
   bindblur: function(e) {
-    console.log('我点击了')
     this.setData({
       reply1: false
     })
   },
 
   missiontypeInput: function(e) {
+    if(e.detail.value.indexOf('?') != -1) {
+      wx.showModal({
+        title: '提示',
+        content: '任务类别中不可包含特殊字符',
+        showCancel: false,
+        confirmText: '我已知悉'
+      })
+      return
+    }
     this.setData({
       newtype: e.detail.value
     })
-    console.log(this.data.newtype)
   },
 
   missionnameInput: function (e) {
+    if(e.detail.value.indexOf('?') != -1) {
+      wx.showModal({
+        title: '提示',
+        content: '任务名称中不可包含特殊字符',
+        showCancel: false,
+        confirmText: '我已知悉'
+      })
+      return
+    }
     this.setData({
       newname: e.detail.value
     })
-    console.log(this.data.newname)
   },
 
   bindDateChange: function (e) {
     this.setData({
       newdate: e.detail.value
     })
-    console.log(this.data.newdate)
   },
 
   save: function(e) {
-    console.log('fffffffffff')
-    console.log(this.data.newtype)
-    console.log(this.data.typeArray)
-    console.log('fffffffffff')
     var typeArr = this.data.typeArray
     typeArr.push(this.data.newtype)
     var index = typeArr.length
     var temp = typeArr[index - 1]
     typeArr[index - 1] = typeArr[index - 2]
     typeArr[index - 2] = temp
-    console.log('cccccccccc')
-    console.log(typeArr)
-    console.log('cccccccccc')
     this.setData({
       typeArray: typeArr
     })
@@ -170,9 +170,6 @@ Page({
     var header = {}
     var cookie = cookieUtil.getCookieFromStorage()
     header.Cookie = cookie
-    console.log('oooooooo')
-    console.log(that.data.mission)
-    console.log('oooooooo')
     var result = that.data.newtype + '?' + that.data.newname + '?' + that.data.newmajor + '?' + that.data.newdate
     if (that.data.mission.indexOf(result) > -1) {
       wx.showToast({
@@ -188,7 +185,6 @@ Page({
     for(var i = 0; i < that.data.typeArray.length; i++) {
       loadArr.push(that.data.typeArray[i])
     }
-    console.log(that.data.mission)
     wx.request({
       url: app.globalData.serverUrl + '/api/v1.0/auth/user',
       method: 'POST',
@@ -201,9 +197,6 @@ Page({
       },
       header: header,
       success(res) {
-        console.log('kkkkkkk')
-        console.log(res)
-        console.log('kkkkkkk')
         wx.showToast({
           title: '保存成功',
           duration:1000

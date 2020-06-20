@@ -1,5 +1,8 @@
 {
   "navigationBarTitleText": "我的",
   "navigationBarTextStyle": "black",
-  "backgroundColor": "#fad73f"
+  "backgroundColor": "#fad73f",
+  "usingComponents": {
+    "modal": "../../components/modal/modal"
+  }
 }
